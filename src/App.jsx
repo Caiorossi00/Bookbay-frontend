@@ -4,6 +4,8 @@ import VitrinePage from './pages/Home';
 import AdminDashboard from './pages/AdminDashoard';
 import AdminPage from './components/Admin/AdminPage';
 import NewBook from './components/Admin/NewBook'; 
+import "./App.css"
+
 
 function App() {
   return (
