@@ -4,12 +4,13 @@ import VitrinePage from './pages/Home';
 import AdminDashboard from './pages/AdminDashoard';
 import AdminPage from './components/Admin/AdminPage';
 import NewBook from './components/Admin/NewBook'; 
-import "./App.css"
-
+import "./App.css";
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<VitrinePage />} />
         <Route path="/admin" element={<AdminDashboard />} />

@@ -1,0 +1,27 @@
+nav {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: "lora", serif;
+
+    h1 {
+        font-size: 2.5em;
+        margin: 0;
+        padding: 1em;
+        color: #333;
+        letter-spacing: -2px
+    }
+}
+
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}
