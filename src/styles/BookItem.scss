@@ -1,14 +1,29 @@
 .book-container {
-display: flex;
+  display: flex;
   flex-direction: column;
-  background-color: yellow ;
+  font-family: "inter";
+  letter-spacing: -1.3px;
+  gap: 3px;
 
-img {
-    width: 200px;
-    height: auto;
-    border-radius: 10px;
+  img {
+    width: 170px;
+    min-height: 250px;
+    max-height: 250px;
+    object-fit: contain;
+  }
+
+  h1 {
+    font-size: large;
+    font-weight: 300;
+  }
+
+  p {
+    font-weight: 100;
+  }
+
+  .book-price {
+    font-weight: 200;
+    margin-top: 0.3em;
+    font-size: large;
+  }
 }
-
-
-}
-

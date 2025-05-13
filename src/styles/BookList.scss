@@ -1,3 +1,23 @@
+//Booklist precisa ter a margin removida e estruturada com flex no componente pai
+
 .book-list {
+  margin-top: 3vh;
   display: flex;
-gap: 2em;}
+  flex-direction: column;
+  gap: 1em;
+}
+
+.featured-collection {
+  h1 {
+    font-size: 1.3em;
+    border-bottom: 1px solid #ccc;
+    width: fit-content;
+    font-style: italic;
+  }
+}
+
+.book-list-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
