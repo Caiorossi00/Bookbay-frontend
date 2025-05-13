@@ -1,33 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "../styles/AdminDashboard.scss";
 
 const AdminDashboard = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/books')
+    fetch("http://localhost:3000/books")
       .then((response) => response.json())
       .then((data) => setBooks(data));
   }, []);
 
   const handleDelete = async (id) => {
     await fetch(`http://localhost:3000/books/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
     setBooks(books.filter((book) => book.id !== id));
   };
 
   return (
-    <div>
+    <div className="admin-dashboard">
       <h1>Área Administrativa</h1>
-      <Link to="/admin/book/new">Adicionar Novo Livro</Link>
-      <div>
+      <Link to="/admin/book/new" className="add-book-link">
+        Adicionar Novo Livro
+      </Link>
+      <div className="book-list">
         {books.map((book) => (
-          <div key={book.id}>
+          <div key={book.id} className="book-card">
             <h3>{book.title}</h3>
-            <p><strong>Autor:</strong> {book.author}</p>
-            <button onClick={() => handleDelete(book.id)}>Excluir</button>
-            <Link to={`/admin/book/${book.id}`}>Editar</Link>
+            <p>
+              <strong>Autor:</strong> {book.author}
+            </p>
+            <div className="actions">
+              <button onClick={() => handleDelete(book.id)}>Excluir</button>
+              <Link to={`/admin/book/${book.id}`} className="edit-link">
+                Editar
+              </Link>
+            </div>
           </div>
         ))}
       </div>
