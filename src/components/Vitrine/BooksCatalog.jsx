@@ -2,16 +2,14 @@ import React from "react";
 import BookItem from "./BookItem";
 import "../../styles/FeaturedBooks.scss";
 
-const FeaturedBooks = ({ books }) => {
-  const featuredBooks = books.filter((book) => book.isDestaque);
-
+const BooksCatalog = ({ books }) => {
   return (
     <div className="book-list">
       <div className="featured-collection">
-        <h1>Featured Collection</h1>
+        <h1> Catálogo</h1>
       </div>
       <div className="book-list-display">
-        {featuredBooks.map((book) => (
+        {books.map((book) => (
           <BookItem key={book.id} book={book} />
         ))}
       </div>
@@ -19,4 +17,4 @@ const FeaturedBooks = ({ books }) => {
   );
 };
 
-export default FeaturedBooks;
+export default BooksCatalog;
