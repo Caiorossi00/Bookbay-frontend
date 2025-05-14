@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BookList from "../components/Vitrine/BookList";
+import BookList from "../components/Vitrine/FeaturedBooks.jsx";
 import "../styles/Home.scss";
 
 const Home = () => {
@@ -17,6 +17,7 @@ const Home = () => {
         src="https://images.unsplash.com/photo-1630873273144-cfa9079fdd72?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="Livros"
       />
+      <div></div>
       <BookList books={books} />
     </div>
   );

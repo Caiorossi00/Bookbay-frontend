@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const AdminPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    title: '',
-    author: '',
-    price: '',
-    cover: '',
-    description: '',
+    title: "",
+    author: "",
+    price: "",
+    cover: "",
+    description: "",
+    isDestaque: false,
   });
 
   useEffect(() => {
@@ -21,30 +22,32 @@ const AdminPage = () => {
   }, [id]);
 
   const handleInputChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: name === "isDestaque" ? value === "true" : value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (id) {
-      await fetch(`http://localhost:3000/books/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-    } else {
-      await fetch('http://localhost:3000/books', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-    }
-    navigate('/admin');
+    const method = id ? "PUT" : "POST";
+    const url = id
+      ? `http://localhost:3000/books/${id}`
+      : "http://localhost:3000/books";
+
+    await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    navigate("/admin");
   };
 
   return (
     <div>
-      <h1>{id ? 'Editar Livro' : 'Adicionar Novo Livro'}</h1>
+      <h1>{id ? "Editar Livro" : "Adicionar Novo Livro"}</h1>
       <form onSubmit={handleSubmit}>
         <input
           name="title"
@@ -77,7 +80,15 @@ const AdminPage = () => {
           value={form.description}
           onChange={handleInputChange}
         />
-        <button type="submit">{id ? 'Atualizar' : 'Adicionar'}</button>
+        <select
+          name="isDestaque"
+          value={form.isDestaque}
+          onChange={handleInputChange}
+        >
+          <option value={false}>Não é destaque</option>
+          <option value={true}>É destaque</option>
+        </select>
+        <button type="submit">{id ? "Atualizar" : "Adicionar"}</button>
       </form>
     </div>
   );

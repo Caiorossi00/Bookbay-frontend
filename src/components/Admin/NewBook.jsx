@@ -1,53 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const NewBook = () => {
   const [newBook, setNewBook] = useState({
-    id: '',  // O ID será gerado aqui
-    title: '',
-    author: '',
-    price: '',
-    cover: '',
-    description: '',
+    id: "",
+    title: "",
+    author: "",
+    price: "",
+    cover: "",
+    description: "",
+    isDestaque: false,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewBook({
-      ...newBook,
-      [name]: value,
-    });
+
+    setNewBook((prev) => ({
+      ...prev,
+      [name]: name === "isDestaque" ? value === "true" : value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Gerar um ID aleatório para o livro
-    const randomId = Math.floor(Math.random() * 1000000); // Pode ser ajustado conforme necessário
+    const randomId = Math.floor(Math.random() * 1000000);
 
-    // Adicionar o ID ao novo livro
     const bookWithId = { ...newBook, id: randomId };
 
-    // Enviar o livro para o backend via POST
-    const response = await fetch('http://localhost:3000/books', {
-      method: 'POST',
+    const response = await fetch("http://localhost:3000/books", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(bookWithId),
     });
 
     if (response.ok) {
-      alert('Livro adicionado com sucesso!');
+      alert("Livro adicionado com sucesso!");
       setNewBook({
-        id: '', // Reset ID após o envio
-        title: '',
-        author: '',
-        price: '',
-        cover: '',
-        description: '',
+        id: "",
+        title: "",
+        author: "",
+        price: "",
+        cover: "",
+        description: "",
+        isDestaque: false,
       });
     } else {
-      alert('Erro ao adicionar o livro.');
+      alert("Erro ao adicionar o livro.");
     }
   };
 
@@ -89,6 +89,14 @@ const NewBook = () => {
           value={newBook.description}
           onChange={handleChange}
         />
+        <select
+          name="isDestaque"
+          value={newBook.isDestaque}
+          onChange={handleChange}
+        >
+          <option value={false}>Não é destaque</option>
+          <option value={true}>É destaque</option>
+        </select>
         <button type="submit">Adicionar Livro</button>
       </form>
     </div>
