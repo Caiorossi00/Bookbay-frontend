@@ -1,18 +1,17 @@
 //Booklist precisa ter a margin removida e estruturada com flex no componente pai
 
-.book-list {
-  margin-top: 3vh;
+.container-catalog {
   display: flex;
-  flex-direction: column;
-  gap: 1em;
+  gap: 120px;
 }
 
 .featured-collection {
   h1 {
-    font-size: 1.3em;
+    font-size: 1.4em;
     border-bottom: 1px solid #ccc;
     width: fit-content;
     font-style: italic;
+    margin-bottom: 15px;
   }
 }
 

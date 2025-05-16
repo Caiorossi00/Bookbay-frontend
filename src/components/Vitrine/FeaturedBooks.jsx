@@ -1,6 +1,6 @@
 import React from "react";
 import BookItem from "./BookItem";
-import "../../styles/FeaturedBooks.scss";
+import "../../styles/BooksCatalog.scss";
 
 const FeaturedBooks = ({ books }) => {
   const featuredBooks = books.filter((book) => book.isDestaque);

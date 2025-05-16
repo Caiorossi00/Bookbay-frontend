@@ -3,29 +3,28 @@
   flex-direction: column;
   font-family: "inter";
   letter-spacing: -1.3px;
-  gap: 3px;
+  gap: 6px;
 
   img {
-    width: 170px;
-    min-height: 250px;
-    max-height: 250px;
+    width: 140px;
+    min-height: 210px;
+    max-height: 210px;
     object-fit: contain;
   }
 
   h1 {
-    font-size: large;
     font-weight: 300;
-    width: 170px;
-    margin-top: 4px;
+    font-size: 13px;
+    width: 120px;
   }
 
   p {
     font-weight: 100;
+    font-size: small;
   }
 
   .book-price {
     font-weight: 200;
-    margin-top: 0.3em;
-    font-size: large;
+    font-size: 16px;
   }
 }
