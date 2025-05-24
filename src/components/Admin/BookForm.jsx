@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-const AdminPage = () => {
+const BookForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -94,4 +94,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default BookForm;
