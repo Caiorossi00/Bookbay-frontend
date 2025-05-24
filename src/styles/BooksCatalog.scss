@@ -2,7 +2,7 @@
 
 .container-catalog {
   display: flex;
-  gap: 120px;
+  flex-direction: column;
 }
 
 .featured-collection {

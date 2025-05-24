@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../styles/NewBook.scss";
 
 const NewBook = () => {
   const [newBook, setNewBook] = useState({
@@ -13,7 +14,6 @@ const NewBook = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setNewBook((prev) => ({
       ...prev,
       [name]: name === "isDestaque" ? value === "true" : value,
@@ -22,16 +22,12 @@ const NewBook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const randomId = Math.floor(Math.random() * 1000000);
-
     const bookWithId = { ...newBook, id: randomId };
 
     const response = await fetch("http://localhost:3000/books", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bookWithId),
     });
 
@@ -52,9 +48,9 @@ const NewBook = () => {
   };
 
   return (
-    <div>
+    <div className="new-book-container">
       <h1>Adicionar Novo Livro</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="new-book-form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="title"
