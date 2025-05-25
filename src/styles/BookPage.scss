@@ -1,0 +1,88 @@
+.container-bookPage {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  margin: 0 auto;
+  margin-top: 4vh;
+}
+
+.bookpage-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 2vh;
+
+  h1 {
+    font-size: 2.5em;
+    font-style: italic;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    color: grey;
+    text-transform: uppercase;
+  }
+
+  .bookpage-price {
+    letter-spacing: -1px;
+    font-size: 1.8em;
+    font-style: italic;
+    font-weight: lighter;
+  }
+
+  button {
+    background-color: black;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: fit-content;
+    margin-top: 10px;
+    font-family: inherit;
+    font-size: 14px;
+
+    &:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      background-color: #555;
+      transform: scale(0.98);
+    }
+  }
+}
+
+.bookpage-description {
+  display: flex;
+  align-items: baseline;
+  background-color: rgb(245, 245, 245);
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 4px;
+  max-width: 500px;
+  height: fit-content;
+  overflow-y: scroll;
+  max-height: 38vh;
+
+  p {
+    padding: 1em 2em;
+  }
+}
+
+.bookpage-image {
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  align-items: center;
+  padding: 6em;
+  background-color: rgb(248, 248, 248);
+  border-radius: 4px;
+
+  img {
+    min-height: 40vh;
+    max-height: 40vh;
+    border-radius: 4px;
+  }
+}

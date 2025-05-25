@@ -1,17 +1,26 @@
 import React from "react";
 import "../styles/Navbar.scss";
+import logo from "../assets/BookBay.png";
 
 const Navbar = () => {
   return (
     <nav>
-      <h1>Bookbay</h1>
+      <a href="/">
+        <img src={logo} alt="logo Bookbay" />
+      </a>
       <ul>
         <li>
           <a href="/">Início</a>
         </li>
-        <li>
-          <a href="/admin">Admin</a>
-        </li>
+
+        <div className="nav-right">
+          <li>
+            <a href="/">Carrinho</a>
+          </li>
+          <li>
+            <a href="/admin">Admin</a>
+          </li>
+        </div>
       </ul>
     </nav>
   );

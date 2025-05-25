@@ -7,6 +7,7 @@ import NewBook from "./components/Admin/NewBook";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import BookPage from "./components/BookPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/book/new" element={<NewBook />} />
         <Route path="/admin/book/:id" element={<BookForm />} />
+        <Route path="/livro/:id" element={<BookPage />} />
       </Routes>
       <Footer />
     </Router>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "../../styles/BookForm.scss";
 
 const BookForm = () => {
   const { id } = useParams();
@@ -46,9 +47,9 @@ const BookForm = () => {
   };
 
   return (
-    <div>
+    <div className="book-form-container">
       <h1>{id ? "Editar Livro" : "Adicionar Novo Livro"}</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="book-form" onSubmit={handleSubmit}>
         <input
           name="title"
           placeholder="Título"

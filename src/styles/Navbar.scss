@@ -8,13 +8,12 @@ nav {
   width: 92%;
   margin-bottom: 2vh;
 
-  h1 {
-    font-size: 2.5em;
-    margin: 0;
-    padding: 1em;
-    color: #333;
-    letter-spacing: -3px;
-    font-weight: 700;
+  img {
+    width: 130px;
+    height: 130px;
+    align-self: center;
+    padding-top: 10px;
+    margin-bottom: -15px;
   }
 }
 
@@ -28,4 +27,9 @@ ul {
     color: black;
     font-size: 1.1em;
   }
+}
+
+.nav-right {
+  display: flex;
+  gap: 20px;
 }
