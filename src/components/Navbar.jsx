@@ -15,7 +15,7 @@ const Navbar = () => {
 
         <div className="nav-right">
           <li>
-            <a href="/">Carrinho</a>
+            <a href="/carrinho">Carrinho</a>
           </li>
           <li>
             <a href="/admin">Admin</a>

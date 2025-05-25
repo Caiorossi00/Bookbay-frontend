@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/BookPage.scss";
+import { useCart } from "../context/CartContext"; // ✅ IMPORTAÇÃO DO CONTEXTO
 
 export default function BookPage() {
   const { id } = useParams();
+  const { addToCart } = useCart(); // ✅ USO DO CONTEXTO
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,12 +43,10 @@ export default function BookPage() {
         <p className="bookpage-price">
           R$ {isNaN(precoNumero) ? "Indisponível" : precoNumero.toFixed(2)}
         </p>
-
         <div className="bookpage-description">
           <p>{book.description}</p>
         </div>
-
-        <button>Adicionar ao carrinho</button>
+        <button onClick={() => addToCart(book)}>Adicionar ao carrinho</button>
       </div>
 
       <div className="bookpage-image">

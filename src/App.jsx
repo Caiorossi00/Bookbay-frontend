@@ -8,6 +8,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BookPage from "./components/BookPage";
+import CartPage from "./components/CartPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/admin/book/new" element={<NewBook />} />
         <Route path="/admin/book/:id" element={<BookForm />} />
         <Route path="/livro/:id" element={<BookPage />} />
+        <Route path="/carrinho" element={<CartPage />} />
       </Routes>
       <Footer />
     </Router>
