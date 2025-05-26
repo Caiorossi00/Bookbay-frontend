@@ -6,10 +6,11 @@
   gap: 6px;
 
   img {
-    width: 157px;
+    min-width: 150px;
+    max-width: 150px;
     min-height: 220px;
     max-height: 220px;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   h1 {
