@@ -4,7 +4,8 @@ import "../styles/CartPage.scss";
 export default function CartPage() {
   const { cart, removeFromCart } = useCart();
 
-  if (cart.length === 0) return <p>O carrinho está vazio.</p>;
+  if (cart.length === 0)
+    return <p className="empty-cart">O seu carrinho ainda está vazio.</p>;
 
   return (
     <div className="cart-page">

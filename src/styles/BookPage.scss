@@ -1,88 +1,87 @@
 .container-bookPage {
   display: flex;
-  justify-content: center;
-  gap: 5%;
+  width: 92%;
   margin: 0 auto;
-  margin-top: 4vh;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 5vh;
+}
+
+.bookpage-image {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2em 0em;
+  img {
+    width: 400px;
+    height: 500px;
+    object-fit: contain;
+  }
 }
 
 .bookpage-details {
+  width: 500px;
+  margin-top: 2vh;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 2vh;
 
   h1 {
-    font-size: 2.5em;
+    font-size: 2.3em;
     font-style: italic;
+    font-weight: bold;
+    letter-spacing: -1px;
   }
 
-  h3 {
-    font-size: 1.2em;
-    color: grey;
-    text-transform: uppercase;
+  h3,
+  .bookpage-price {
+    font-family: "inter", sansnerif;
+    font-size: 1.5em;
+    font-weight: lighter;
+    letter-spacing: -1px;
+    font-style: italic;
   }
 
   .bookpage-price {
-    letter-spacing: -1px;
-    font-size: 1.8em;
-    font-style: italic;
-    font-weight: lighter;
+    font-size: 1.4em;
+    margin-top: 5px;
   }
 
   button {
     background-color: black;
-    color: white;
-    padding: 10px 22px;
     border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: fit-content;
+    padding: 1em 2em;
+    color: white;
     margin-top: 10px;
+    width: fit-content;
     font-family: inherit;
-    font-size: 14px;
+    align-self: flex-end;
 
     &:hover {
       background-color: #333;
-      transform: scale(1.05);
-    }
-
-    &:active {
-      background-color: #555;
-      transform: scale(0.98);
+      cursor: pointer;
     }
   }
 }
 
 .bookpage-description {
-  display: flex;
-  align-items: baseline;
-  background-color: rgb(245, 245, 245);
-  padding-top: 10px;
-  padding-bottom: 20px;
-  border-radius: 4px;
-  max-width: 500px;
-  height: fit-content;
+  background-color: rgba(243, 243, 243, 0.616);
+  padding: 1.5em;
+  border-radius: 2px;
+  margin-top: 2vh;
+  min-height: 200px;
+  max-height: 280px;
   overflow-y: scroll;
-  max-height: 38vh;
 
   p {
-    padding: 1em 2em;
+    color: #333;
+    letter-spacing: -0.4px;
   }
-}
 
-.bookpage-image {
-  background-color: rgb(240, 240, 240);
-  display: flex;
-  align-items: center;
-  padding: 6em;
-  background-color: rgb(248, 248, 248);
-  border-radius: 4px;
-
-  img {
-    min-height: 40vh;
-    max-height: 40vh;
-    border-radius: 4px;
+  h5 {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: grey;
+    font-family: "inter", sans-serif;
+    letter-spacing: -2px;
+    font-style: italic;
   }
 }

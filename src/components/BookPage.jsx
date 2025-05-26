@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import "../styles/BookPage.scss";
-import { useCart } from "../context/CartContext"; // ✅ IMPORTAÇÃO DO CONTEXTO
 
 export default function BookPage() {
   const { id } = useParams();
-  const { addToCart } = useCart(); // ✅ USO DO CONTEXTO
+  const { addToCart } = useCart();
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -37,6 +37,10 @@ export default function BookPage() {
 
   return (
     <div className="container-bookPage">
+      <div className="bookpage-image">
+        <img src={book.cover} alt={book.title} />
+      </div>
+
       <div className="bookpage-details">
         <h1>{book.title}</h1>
         <h3>{book.author}</h3>
@@ -44,13 +48,10 @@ export default function BookPage() {
           R$ {isNaN(precoNumero) ? "Indisponível" : precoNumero.toFixed(2)}
         </p>
         <div className="bookpage-description">
+          <h5>Descrição</h5>
           <p>{book.description}</p>
         </div>
         <button onClick={() => addToCart(book)}>Adicionar ao carrinho</button>
-      </div>
-
-      <div className="bookpage-image">
-        <img src={book.cover} alt={book.title} />
       </div>
     </div>
   );

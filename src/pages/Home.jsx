@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import FeaturedBooks from "../components/Vitrine/FeaturedBooks.jsx";
 import "../styles/Home.scss";
 import BooksCatalog from "../components/Vitrine/BooksCatalog.jsx";
+import GenresBanners from "../components/GenresBanners.jsx";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -20,6 +21,9 @@ const Home = () => {
       />
       <div>
         <FeaturedBooks books={books} />
+      </div>
+      <div>
+        <GenresBanners />
       </div>
       <div>
         <BooksCatalog books={books} />
