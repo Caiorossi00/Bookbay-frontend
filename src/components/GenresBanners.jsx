@@ -1,14 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import hq from "../assets/genres/hq.png";
 import terror from "../assets/genres/terror.png";
-import filosofia from "../assets/genres/filosofia.png";
 import code from "../assets/genres/code.png";
 import "../styles/GenresBanners.scss";
 
 const genres = [
-  { src: hq, alt: "HQs" },
-  { src: terror, alt: "Terror" },
-  { src: code, alt: "Programação" },
+  { src: hq, alt: "HQs", path: "hqs" },
+  { src: terror, alt: "Terror", path: "terror" },
+  { src: code, alt: "Programação", path: "programacao" },
 ];
 
 const GenresBanners = () => {
@@ -19,10 +19,14 @@ const GenresBanners = () => {
       </div>
       <div className="genres-images">
         {genres.map((genre, index) => (
-          <div key={index} className="genres-banner-wrapper">
+          <Link
+            to={`/${genre.path}`}
+            key={index}
+            className="genres-banner-wrapper"
+          >
             <img src={genre.src} alt={genre.alt} className="genres-banner" />
             <div className="genres-banner-text">{genre.alt}</div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
