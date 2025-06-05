@@ -55,7 +55,7 @@
     margin-left: 10px;
 
     h2 {
-      font-size: 1.3em;
+      font-size: 1.2em;
       font-style: italic;
     }
 
@@ -66,7 +66,7 @@
     }
 
     p {
-      font-size: 1.2em;
+      font-size: 1.1em;
       font-family: "inter", sans-serif;
       letter-spacing: -2px;
       font-weight: lighter;
@@ -74,7 +74,7 @@
 
     button {
       width: fit-content;
-      padding: 0.3em 0.8em;
+      padding: 0.5em 1em;
       border: none;
       cursor: pointer;
       border-radius: 4px;
@@ -82,6 +82,7 @@
       background-color: white;
       border: 1px solid black;
       color: black;
+      font-family: inherit;
 
       &:hover {
         background-color: #000000;
@@ -99,7 +100,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.5em;
 
   h2 {
     font-size: 1.5em;
@@ -109,18 +110,22 @@
   button {
     background-color: black;
     border: none;
-    padding: 15px 10px;
+    padding: 10px;
     color: white;
-    font-size: 1em;
+    font-size: 0.9em;
     font-family: inherit;
     border-radius: 4px;
+    width: 60%;
+    align-self: flex-end;
+    margin-top: 20px;
+    cursor: pointer;
   }
 
   p {
     font-family: "inter", sans-serif;
     font-weight: lighter;
     letter-spacing: -1px;
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 }
 
