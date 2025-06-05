@@ -15,7 +15,7 @@ const AdminDashboard = () => {
     await fetch(`http://localhost:3000/books/${id}`, {
       method: "DELETE",
     });
-    setBooks(books.filter((book) => book.id !== id));
+    setBooks(books.filter((book) => book._id !== id));
   };
 
   return (
@@ -26,14 +26,14 @@ const AdminDashboard = () => {
       </Link>
       <div className="book-list">
         {books.map((book) => (
-          <div key={book.id} className="book-card">
+          <div key={book._id} className="book-card">
             <h3>{book.title}</h3>
             <p>
               <strong>Autor:</strong> {book.author}
             </p>
             <div className="actions">
-              <button onClick={() => handleDelete(book.id)}>Excluir</button>
-              <Link to={`/admin/book/${book.id}`} className="edit-link">
+              <button onClick={() => handleDelete(book._id)}>Excluir</button>
+              <Link to={`/admin/book/${book._id}`} className="edit-link">
                 Editar
               </Link>
             </div>
