@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BookPage from "./components/BookPage";
 import CartPage from "./components/CartPage";
+import GenrePage from "./pages/GenrePage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/admin/book/:id" element={<BookForm />} />
         <Route path="/livro/:id" element={<BookPage />} />
         <Route path="/carrinho" element={<CartPage />} />
+        <Route path="/genero/:genero" element={<GenrePage />} />
       </Routes>
       <Footer />
     </Router>

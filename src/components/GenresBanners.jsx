@@ -20,7 +20,7 @@ const GenresBanners = () => {
       <div className="genres-images">
         {genres.map((genre, index) => (
           <Link
-            to={`/${genre.path}`}
+            to={`/genero/${genre.path}`}
             key={index}
             className="genres-banner-wrapper"
           >
