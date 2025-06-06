@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import "../styles/BookPage.scss";
+import ".././assets/styles/BookPage.scss";
 
 export default function BookPage() {
   const { id } = useParams();

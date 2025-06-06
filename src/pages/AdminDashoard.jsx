@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/AdminDashboard.scss";
+import ".././assets/styles/AdminDashboard.scss";
 
 const AdminDashboard = () => {
   const [books, setBooks] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/NewBook.scss";
+import "../../assets/styles/NewBook.scss";
 
 const NewBook = () => {
   const [newBook, setNewBook] = useState({

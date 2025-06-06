@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import hq from "../assets/genres/hq.png";
-import terror from "../assets/genres/terror.png";
-import code from "../assets/genres/code.png";
-import "../styles/GenresBanners.scss";
+import hq from "../../assets/genres/hq.png";
+import terror from "../../assets/genres/terror.png";
+import code from "../../assets/genres/code.png";
+import "../../assets/styles/GenresBanners.scss";
 
 const genres = [
   { src: hq, alt: "HQs", path: "hqs" },

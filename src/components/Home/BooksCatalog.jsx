@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BookItem from "./BookItem";
-import "../../styles/BooksCatalog.scss";
-import SearchBar from "../SearchBar";
+import SearchBook from "./SearchBook";
+import "../../assets/styles/BooksCatalog.scss";
 
 const BooksCatalog = ({ books }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,11 +29,11 @@ const BooksCatalog = ({ books }) => {
         <h1>Catálogo</h1>
       </div>
 
-      <SearchBar
+      <SearchBook
         searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
+        setSearchTerm={setSearchTerm}
         selectedGenre={selectedGenre}
-        onGenreChange={setSelectedGenre}
+        setSelectedGenre={setSelectedGenre}
       />
 
       <div className="container-catalog">

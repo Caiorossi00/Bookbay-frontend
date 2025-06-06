@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import FeaturedBooks from "../components/Vitrine/FeaturedBooks.jsx";
-import "../styles/Home.scss";
-import BooksCatalog from "../components/Vitrine/BooksCatalog.jsx";
-import GenresBanners from "../components/GenresBanners.jsx";
+import FeaturedBooks from "../components/Home/FeaturedBooks.jsx";
+import BooksCatalog from "../components/Home/BooksCatalog.jsx";
+import GenresBanners from "../components/Home/GenresBanners.jsx";
+import ".././assets/styles/Home.scss";
 
 const Home = () => {
   const [books, setBooks] = useState([]);

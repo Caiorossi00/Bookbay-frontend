@@ -7,8 +7,8 @@ import BookForm from "./components/Admin/EditBook";
 import NewBook from "./components/Admin/AddBook";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import BookPage from "./components/BookPage";
-import CartPage from "./components/CartPage";
+import BookPage from "./pages/BookPage";
+import CartPage from "./pages/CartPage";
 import GenrePage from "./pages/GenrePage";
 
 function App() {
