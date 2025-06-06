@@ -12,18 +12,31 @@ const NewBook = () => {
     isDestaque: false,
   });
 
+  const [genresInput, setGenresInput] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewBook((prev) => ({
-      ...prev,
-      [name]: name === "isDestaque" ? value === "true" : value,
-    }));
+
+    if (name === "genres") {
+      setGenresInput(value);
+    } else {
+      setNewBook((prev) => ({
+        ...prev,
+        [name]: name === "isDestaque" ? value === "true" : value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const genresArray = genresInput
+      .split(",")
+      .map((g) => g.trim())
+      .filter((g) => g.length > 0);
+
     const randomId = Math.floor(Math.random() * 1000000);
-    const bookWithId = { ...newBook, id: randomId };
+    const bookWithId = { ...newBook, id: randomId, genres: genresArray };
 
     const response = await fetch("http://localhost:3000/books", {
       method: "POST",
@@ -42,6 +55,7 @@ const NewBook = () => {
         description: "",
         isDestaque: false,
       });
+      setGenresInput("");
     } else {
       alert("Erro ao adicionar o livro.");
     }
@@ -85,6 +99,13 @@ const NewBook = () => {
           value={newBook.description}
           onChange={handleChange}
         />
+        <input
+          type="text"
+          name="genres"
+          placeholder="Gêneros (separados por vírgula)"
+          value={genresInput}
+          onChange={handleChange}
+        />
         <select
           name="isDestaque"
           value={newBook.isDestaque}
@@ -93,6 +114,7 @@ const NewBook = () => {
           <option value={false}>Não é destaque</option>
           <option value={true}>É destaque</option>
         </select>
+
         <button type="submit">Adicionar Livro</button>
       </form>
     </div>

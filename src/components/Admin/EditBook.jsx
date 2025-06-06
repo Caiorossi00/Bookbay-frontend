@@ -12,13 +12,19 @@ const BookForm = () => {
     cover: "",
     description: "",
     isDestaque: false,
+    genres: [],
   });
 
   useEffect(() => {
     if (id) {
       fetch(`http://localhost:3000/books/${id}`)
         .then((response) => response.json())
-        .then((data) => setForm(data));
+        .then((data) =>
+          setForm({
+            ...data,
+            genres: Array.isArray(data.genres) ? data.genres : [],
+          })
+        );
     }
   }, [id]);
 
@@ -81,6 +87,22 @@ const BookForm = () => {
           value={form.description}
           onChange={handleInputChange}
         />
+
+        <input
+          name="genres"
+          placeholder="Gêneros (separados por vírgula)"
+          value={form.genres.join(", ")}
+          onChange={(e) =>
+            setForm({
+              ...form,
+              genres: e.target.value
+                .split(",")
+                .map((g) => g.trim())
+                .filter(Boolean),
+            })
+          }
+        />
+
         <select
           name="isDestaque"
           value={form.isDestaque}
@@ -89,6 +111,7 @@ const BookForm = () => {
           <option value={false}>Não é destaque</option>
           <option value={true}>É destaque</option>
         </select>
+
         <button type="submit">{id ? "Atualizar" : "Adicionar"}</button>
       </form>
     </div>

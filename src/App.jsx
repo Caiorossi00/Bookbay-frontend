@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
 import VitrinePage from "./pages/Home";
 import AdminDashboard from "./pages/AdminDashoard";
-import BookForm from "./components/Admin/BookForm";
-import NewBook from "./components/Admin/NewBook";
-import "./App.css";
+import BookForm from "./components/Admin/EditBook";
+import NewBook from "./components/Admin/AddBook";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BookPage from "./components/BookPage";
