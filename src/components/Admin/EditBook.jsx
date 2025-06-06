@@ -15,19 +15,6 @@ const BookForm = () => {
     genres: [],
   });
 
-  useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:3000/books/${id}`)
-        .then((response) => response.json())
-        .then((data) =>
-          setForm({
-            ...data,
-            genres: Array.isArray(data.genres) ? data.genres : [],
-          })
-        );
-    }
-  }, [id]);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm({

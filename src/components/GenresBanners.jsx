@@ -8,7 +8,7 @@ import "../styles/GenresBanners.scss";
 const genres = [
   { src: hq, alt: "HQs", path: "hqs" },
   { src: terror, alt: "Terror", path: "terror" },
-  { src: code, alt: "Programação", path: "programacao" },
+  { src: code, alt: "Programação", path: "programação" },
 ];
 
 const GenresBanners = () => {
