@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "../assets/styles/GenrePage.scss";
 
 export default function GenrePage() {
   const { genero } = useParams();
@@ -23,25 +24,23 @@ export default function GenrePage() {
         setLoading(false);
       }
     }
-
     fetchBooksByGenre();
   }, [genero]);
 
-  if (loading) return <p>Carregando...</p>;
-  if (error) return <p>{error}</p>;
-
   return (
     <div className="genre-container">
-      <h2>Livros do gênero: {genero}</h2>
-      <div className="book-list">
-        {books.map((book) => (
-          <div key={book._id} className="book-card">
-            <img src={book.cover} alt={book.title} />
-            <h3>{book.title}</h3>
-            <p>{book.author}</p>
-          </div>
-        ))}
-      </div>
+      {loading && <p className="loading">Carregando...</p>}
+      {error && <p className="error">{error}</p>}
+      {!loading && !error && (
+        <div className="book-list">
+          {books.map((book) => (
+            <div key={book._id} className="book-card">
+              <img src={book.cover} alt={book.title} />
+              <h3>{book.title}</h3>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

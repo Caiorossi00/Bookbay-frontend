@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "../../assets/styles/BookForm.scss";
+import "../../assets/styles/EditBook.scss";
 
 const BookForm = () => {
   const { id } = useParams();

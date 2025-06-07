@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "../SearchBar";
 import SearchGenres from "../SearchGenres";
+import "../../assets/styles/SearchBook.scss";
 
 const SearchBook = ({
   searchTerm,
@@ -9,12 +10,12 @@ const SearchBook = ({
   setSelectedGenre,
 }) => {
   return (
-    <div>
-      <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+    <div className="container-searchBook">
       <SearchGenres
         selectedGenre={selectedGenre}
         onGenreChange={setSelectedGenre}
       />
+      <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
     </div>
   );
 };
