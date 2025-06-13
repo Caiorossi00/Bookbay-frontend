@@ -6,7 +6,7 @@ const BookItem = ({ book }) => {
   return (
     <div className="book-container">
       {book.cover && (
-        <Link to={`/livro/${book.id}`}>
+        <Link to={`/livro/${book._id}`}>
           <img src={book.cover} alt={book.title} />
         </Link>
       )}

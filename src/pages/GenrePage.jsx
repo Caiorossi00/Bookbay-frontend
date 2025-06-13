@@ -12,7 +12,7 @@ export default function GenrePage() {
     async function fetchBooksByGenre() {
       try {
         const response = await fetch(
-          `http://localhost:3000/books/genero/${genero}`
+          `http://localhost:5000/books/genero/${genero}`
         );
         if (!response.ok)
           throw new Error("Nenhum livro encontrado para esse gênero");
