@@ -38,7 +38,7 @@ const NewBook = () => {
     const randomId = Math.floor(Math.random() * 1000000);
     const bookWithId = { ...newBook, id: randomId, genres: genresArray };
 
-    const response = await fetch("http://localhost:3000/books", {
+    const response = await fetch("http://localhost:5000/books", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bookWithId),

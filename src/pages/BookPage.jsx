@@ -14,7 +14,7 @@ export default function BookPage() {
     async function fetchBook() {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:3000/books/${id}`);
+        const response = await fetch(`http://localhost:5000/books/${id}`);
         if (!response.ok) {
           throw new Error(`Erro: ${response.status} - ${response.statusText}`);
         }

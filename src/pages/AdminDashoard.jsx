@@ -6,13 +6,13 @@ const AdminDashboard = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/books")
+    fetch("http://localhost:5000/books")
       .then((response) => response.json())
       .then((data) => setBooks(data));
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:3000/books/${id}`, {
+    await fetch(`http://localhost:5000/books/${id}`, {
       method: "DELETE",
     });
     setBooks(books.filter((book) => book._id !== id));
