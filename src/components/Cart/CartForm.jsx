@@ -2,25 +2,35 @@ import React, { useState } from "react";
 import "../../assets/styles/CartForm.scss";
 
 export default function CartForm({ cart, onSubmit }) {
-  const [nome, setNome] = useState("");
-  const [cep, setCep] = useState("");
-  const [rua, setRua] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [numero, setNumero] = useState("");
-  const [complemento, setComplemento] = useState("");
-  const [pagamento, setPagamento] = useState("");
-  const [email, setEmail] = useState("");
+  const [pedido, setPedido] = useState({
+    nome: "",
+    email: "",
+    cep: "",
+    rua: "",
+    bairro: "",
+    numero: "",
+    complemento: "",
+    pagamento: "",
+  });
 
-  const validateNumero = (value) => {
-    return /^\d*$/.test(value);
-  };
+  const validateNumero = (value) => /^\d*$/.test(value);
 
-  const validateCep = (value) => {
-    return /^[0-9\-]*$/.test(value);
+  const validateCep = (value) => /^[0-9\-]*$/.test(value);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "numero" && !validateNumero(value)) return;
+    if (name === "cep" && !validateCep(value)) return;
+
+    setPedido((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const { nome, email, cep, rua, bairro, numero, complemento, pagamento } =
+      pedido;
 
     if (
       !nome.trim() ||
@@ -35,20 +45,12 @@ export default function CartForm({ cart, onSubmit }) {
       return;
     }
 
-    if (!validateNumero(numero)) {
-      alert("Número da casa inválido. Use apenas números.");
-      return;
-    }
-
-    if (!validateCep(cep)) {
-      alert("CEP inválido. Use apenas números e hífen.");
-      return;
-    }
-
     if (!/\S+@\S+\.\S+/.test(email)) {
       alert("Email inválido.");
       return;
     }
+
+    console.log("Pedido para envio:", pedido);
 
     const produtos = cart.map((item) => item.title).join(", ");
 
@@ -74,52 +76,54 @@ export default function CartForm({ cart, onSubmit }) {
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Nome completo"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
+          name="nome"
+          value={pedido.nome}
+          onChange={handleChange}
           type="text"
         />
         <input
           placeholder="Email"
+          name="email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={pedido.email}
+          onChange={handleChange}
         />
         <input
           placeholder="CEP"
-          value={cep}
-          onChange={(e) => {
-            if (validateCep(e.target.value)) setCep(e.target.value);
-          }}
+          name="cep"
+          value={pedido.cep}
+          onChange={handleChange}
           type="tel"
           maxLength={9}
         />
         <input
           placeholder="Rua"
-          value={rua}
-          onChange={(e) => setRua(e.target.value)}
+          name="rua"
+          value={pedido.rua}
+          onChange={handleChange}
           type="text"
         />
         <input
           placeholder="Bairro"
-          value={bairro}
-          onChange={(e) => setBairro(e.target.value)}
+          name="bairro"
+          value={pedido.bairro}
+          onChange={handleChange}
           type="text"
         />
         <input
           placeholder="Número"
-          value={numero}
-          onChange={(e) => {
-            if (/^\d*$/.test(e.target.value)) setNumero(e.target.value);
-          }}
+          name="numero"
+          value={pedido.numero}
+          onChange={handleChange}
           type="text"
           inputMode="numeric"
           pattern="\d*"
         />
-
         <input
           placeholder="Complemento (opcional)"
-          value={complemento}
-          onChange={(e) => setComplemento(e.target.value)}
+          name="complemento"
+          value={pedido.complemento}
+          onChange={handleChange}
           type="text"
         />
 
@@ -131,8 +135,8 @@ export default function CartForm({ cart, onSubmit }) {
                 type="radio"
                 name="pagamento"
                 value="Pix"
-                checked={pagamento === "Pix"}
-                onChange={(e) => setPagamento(e.target.value)}
+                checked={pedido.pagamento === "Pix"}
+                onChange={handleChange}
               />
               Pix
             </label>
@@ -141,8 +145,8 @@ export default function CartForm({ cart, onSubmit }) {
                 type="radio"
                 name="pagamento"
                 value="Boleto"
-                checked={pagamento === "Boleto"}
-                onChange={(e) => setPagamento(e.target.value)}
+                checked={pedido.pagamento === "Boleto"}
+                onChange={handleChange}
               />
               Boleto
             </label>
