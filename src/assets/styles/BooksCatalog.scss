@@ -5,16 +5,6 @@
   flex-direction: column;
 }
 
-.featured-collection {
-  h1 {
-    font-size: 1.4em;
-    border-bottom: 1px solid #ccc;
-    width: fit-content;
-    font-style: italic;
-    margin-bottom: 15px;
-  }
-}
-
 .book-list-display {
   display: flex;
   flex-wrap: wrap;

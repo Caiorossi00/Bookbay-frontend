@@ -1,0 +1,42 @@
+.featured-collection {
+  h1 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #ccc;
+    width: fit-content;
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+}
+
+.featured-book-list-display {
+  display: flex;
+  flex-wrap: wrap;
+  height: 36vh;
+  margin-bottom: -2vh;
+
+  .swiper-slide {
+    width: 180px;
+    display: flex;
+  }
+
+  .swiper-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+
+    .swiper-pagination-bullet {
+      width: 5px;
+      height: 5px;
+      background: #ccc;
+      border-radius: 50%;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+
+      &.swiper-pagination-bullet-active {
+        background: #333;
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+  }
+}

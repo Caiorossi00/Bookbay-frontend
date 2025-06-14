@@ -1,18 +1,34 @@
 import React from "react";
 import BookItem from "./BookItem";
+import "../../assets/styles/FeaturedBooks.scss";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+
+import "swiper/css/pagination";
 
 const FeaturedBooks = ({ books }) => {
   const featuredBooks = books.filter((book) => book.isDestaque);
 
   return (
-    <div className="book-list">
+    <div className="-featured-book-list">
       <div className="featured-collection">
         <h1>Featured Collection</h1>
       </div>
-      <div className="book-list-display">
-        {featuredBooks.map((book) => (
-          <BookItem key={book.id} book={book} />
-        ))}
+      <div className="featured-book-list-display">
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          slidesPerView="auto"
+          pagination={{ clickable: true }}
+          loop
+          autoplay={{ delay: 1800, disableOnInteraction: false }}
+        >
+          {featuredBooks.map((book) => (
+            <SwiperSlide key={book.id}>
+              <BookItem book={book} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
