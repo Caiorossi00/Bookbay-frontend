@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../assets/styles/CartForm.scss";
 
-export default function CartForm({ cart, onSubmit }) {
+export default function CartForm({ cart }) {
   const [pedido, setPedido] = useState({
     nome: "",
     email: "",
@@ -12,6 +12,8 @@ export default function CartForm({ cart, onSubmit }) {
     complemento: "",
     pagamento: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const validateNumero = (value) => /^\d*$/.test(value);
 
@@ -26,7 +28,7 @@ export default function CartForm({ cart, onSubmit }) {
     setPedido((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { nome, email, cep, rua, bairro, numero, complemento, pagamento } =
@@ -50,24 +52,54 @@ export default function CartForm({ cart, onSubmit }) {
       return;
     }
 
-    console.log("Pedido para envio:", pedido);
-
-    const produtos = cart.map((item) => item.title).join(", ");
+    if (cart.length === 0) {
+      alert("O carrinho está vazio.");
+      return;
+    }
 
     const total = cart
       .reduce((acc, item) => acc + Number(item.price), 0)
       .toFixed(2);
 
-    const message =
-      `Quero comprar os seguintes livros:%0A${produtos}%0AValor total: R$ ${total}%0A%0A` +
-      `Nome completo: ${nome}%0A` +
-      `CEP: ${cep}%0A` +
-      `Endereço: ${rua}, ${bairro}, Nº ${numero}` +
-      (complemento ? `, Complemento: ${complemento}` : "") +
-      `%0AMeio de pagamento: ${pagamento}%0A` +
-      `Email: ${email}`;
+    const pedidoCompleto = {
+      ...pedido,
+      produtos: cart.map((item) => ({
+        title: item.title,
+        price: item.price,
+      })),
+      total,
+    };
 
-    onSubmit?.(message);
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:5000/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(pedidoCompleto),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao enviar pedido");
+      }
+
+      const data = await response.json();
+
+      alert("Pedido enviado com sucesso!");
+      setPedido({
+        nome: "",
+        email: "",
+        cep: "",
+        rua: "",
+        bairro: "",
+        numero: "",
+        complemento: "",
+        pagamento: "",
+      });
+    } catch (error) {
+      alert(error.message || "Erro ao enviar pedido");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -80,6 +112,7 @@ export default function CartForm({ cart, onSubmit }) {
           value={pedido.nome}
           onChange={handleChange}
           type="text"
+          disabled={loading}
         />
         <input
           placeholder="Email"
@@ -87,6 +120,7 @@ export default function CartForm({ cart, onSubmit }) {
           type="email"
           value={pedido.email}
           onChange={handleChange}
+          disabled={loading}
         />
         <input
           placeholder="CEP"
@@ -95,6 +129,7 @@ export default function CartForm({ cart, onSubmit }) {
           onChange={handleChange}
           type="tel"
           maxLength={9}
+          disabled={loading}
         />
         <input
           placeholder="Rua"
@@ -102,6 +137,7 @@ export default function CartForm({ cart, onSubmit }) {
           value={pedido.rua}
           onChange={handleChange}
           type="text"
+          disabled={loading}
         />
         <input
           placeholder="Bairro"
@@ -109,6 +145,7 @@ export default function CartForm({ cart, onSubmit }) {
           value={pedido.bairro}
           onChange={handleChange}
           type="text"
+          disabled={loading}
         />
         <input
           placeholder="Número"
@@ -118,6 +155,7 @@ export default function CartForm({ cart, onSubmit }) {
           type="text"
           inputMode="numeric"
           pattern="\d*"
+          disabled={loading}
         />
         <input
           placeholder="Complemento (opcional)"
@@ -125,6 +163,7 @@ export default function CartForm({ cart, onSubmit }) {
           value={pedido.complemento}
           onChange={handleChange}
           type="text"
+          disabled={loading}
         />
 
         <div className="payment-method">
@@ -137,6 +176,7 @@ export default function CartForm({ cart, onSubmit }) {
                 value="Pix"
                 checked={pedido.pagamento === "Pix"}
                 onChange={handleChange}
+                disabled={loading}
               />
               Pix
             </label>
@@ -147,13 +187,16 @@ export default function CartForm({ cart, onSubmit }) {
                 value="Boleto"
                 checked={pedido.pagamento === "Boleto"}
                 onChange={handleChange}
+                disabled={loading}
               />
               Boleto
             </label>
           </div>
         </div>
 
-        <button type="submit">Comprar</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Enviando..." : "Comprar"}
+        </button>
       </form>
     </>
   );

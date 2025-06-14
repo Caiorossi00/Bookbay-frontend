@@ -1,0 +1,28 @@
+.orders {
+  min-height: 45vh;
+  margin-top: 10px;
+  padding: 0 5%;
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background: #ffffff;
+      padding: 20px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px #00000005;
+      border-radius: 8px;
+
+      p {
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+
+        strong {
+          color: #000;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
