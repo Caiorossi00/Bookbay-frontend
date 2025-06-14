@@ -1,8 +1,12 @@
 import { useCart } from "../context/CartContext";
 import "../assets/styles/CartPage.scss";
+import { useState } from "react";
+import CartModal from "../components/Cart/CartModal";
 
 export default function CartPage() {
   const { cart, removeFromCart } = useCart();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   if (cart.length === 0)
     return <p className="empty-cart">O seu carrinho ainda está vazio.</p>;
@@ -52,9 +56,13 @@ export default function CartPage() {
                 .toFixed(2)}
             </p>
           </div>
-          <button className="checkout-button">Finalizar Compra</button>
+          <button className="checkout-button" onClick={() => setIsOpen(true)}>
+            Finalizar Compra
+          </button>
         </div>
       </div>
+
+      <CartModal isOpen={isOpen} onClose={() => setIsOpen(false)} cart={cart} />
     </div>
   );
 }
