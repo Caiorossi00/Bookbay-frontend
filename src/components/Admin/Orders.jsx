@@ -3,7 +3,6 @@ import "../../assets/styles/Orders.scss";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function Orders() {
 
   return (
     <div className="orders">
-      <ul>
+      <ul className="order-list">
         {orders.map((order) => (
           <li key={order._id}>
             <p>
@@ -48,10 +47,21 @@ export default function Orders() {
             <p>
               <strong>Pagamento:</strong> {order.pagamento}
             </p>
-
             <p>
-              <strong>Total:</strong> R$ {order.total}
+              <strong>Total:</strong> R${order.total}
             </p>
+
+            <div>
+              <strong className="products-header">Livros:</strong>
+              <ul className="product-list">
+                {order.produtos.map((produto, index) => (
+                  <li key={index} className="product-item">
+                    {produto.title} - R${" "}
+                    {produto.price.$numberInt || produto.price}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </li>
         ))}
       </ul>
