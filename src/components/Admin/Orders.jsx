@@ -3,24 +3,26 @@ import "../../assets/styles/Orders.scss";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Tem certeza que quer excluir este pedido?")) {
+      try {
+        await fetch(`http://localhost:5000/orders/${id}`, {
+          method: "DELETE",
+        });
+        setOrders(orders.filter((order) => order._id !== id));
+      } catch (error) {
+        console.error("Erro ao excluir pedido:", error);
+      }
+    }
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/orders")
       .then((res) => res.json())
-      .then((data) => {
-        setOrders(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Erro ao carregar pedidos:", error);
-        setLoading(false);
-      });
+      .then((data) => setOrders(data))
+      .catch((error) => console.error("Erro ao carregar pedidos:", error));
   }, []);
-
-  if (loading) {
-    return <p>Carregando pedidos...</p>;
-  }
 
   if (orders.length === 0) {
     return <p>Nenhum pedido encontrado.</p>;
@@ -30,7 +32,9 @@ export default function Orders() {
     <div className="orders">
       <ul className="order-list">
         {orders.map((order) => (
-          <li key={order._id}>
+          <li key={order._id} style={{ position: "relative" }}>
+            <button onClick={() => handleDelete(order._id)}>×</button>
+
             <p>
               <strong>Nome:</strong> {order.nome}
             </p>
@@ -57,7 +61,7 @@ export default function Orders() {
                 {order.produtos.map((produto, index) => (
                   <li key={index} className="product-item">
                     {produto.title} - R${" "}
-                    {produto.price.$numberInt || produto.price}
+                    {produto.price?.$numberInt || produto.price}
                   </li>
                 ))}
               </ul>
