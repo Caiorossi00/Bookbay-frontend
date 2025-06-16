@@ -25,7 +25,7 @@ export default function Orders() {
   }, []);
 
   if (orders.length === 0) {
-    return <p>Nenhum pedido encontrado.</p>;
+    return <p className="no-orders">Nenhum pedido encontrado.</p>;
   }
 
   return (
