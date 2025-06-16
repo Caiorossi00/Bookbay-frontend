@@ -5,12 +5,16 @@
   width: 95%;
   margin: 0 auto;
   min-height: 50vh;
+  align-items: first baseline;
+  margin-top: 20px;
+  gap: 0.5em;
 
   > li {
     padding: 30px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     width: 400px;
+    min-height: 300px;
 
     p {
       margin-bottom: 10px;
