@@ -11,11 +11,12 @@ const SearchBook = ({
 }) => {
   return (
     <div className="container-searchBook">
+      <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+
       <SearchGenres
         selectedGenre={selectedGenre}
         onGenreChange={setSelectedGenre}
       />
-      <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
     </div>
   );
 };

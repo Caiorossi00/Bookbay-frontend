@@ -8,6 +8,9 @@ const BooksCatalog = ({ books }) => {
   const [selectedGenre, setSelectedGenre] = useState("Todos");
   const [showNoResults, setShowNoResults] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
   useEffect(() => {
     setShowNoResults(false);
     const timer = setTimeout(() => {
@@ -30,6 +33,22 @@ const BooksCatalog = ({ books }) => {
     return matchesSearch && matchesGenre;
   });
 
+  const totalPages = Math.ceil(filteredBooks.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentBooks = filteredBooks.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const goToPage = (page) => {
+    setCurrentPage(page);
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedGenre]);
+
   return (
     <div className="book-list">
       <div className="featured-collection">
@@ -45,14 +64,28 @@ const BooksCatalog = ({ books }) => {
 
       <div className="container-catalog">
         <div className="book-list-display">
-          {filteredBooks.length > 0 ? (
-            filteredBooks.map((book) => <BookItem key={book.id} book={book} />)
+          {currentBooks.length > 0 ? (
+            currentBooks.map((book) => <BookItem key={book.id} book={book} />)
           ) : showNoResults ? (
             <p className="no-results">Nenhum livro encontrado.</p>
           ) : (
             <p className="no-results">Carregando...</p>
           )}
         </div>
+
+        {totalPages > 1 && (
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                className={currentPage === i + 1 ? "active" : ""}
+                onClick={() => goToPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

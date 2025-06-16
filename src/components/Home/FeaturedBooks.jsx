@@ -13,7 +13,7 @@ const FeaturedBooks = ({ books }) => {
   return (
     <div className="-featured-book-list">
       <div className="featured-collection">
-        <h1>Featured Collection</h1>
+        <h1>Favoritos</h1>
       </div>
       <div className="featured-book-list-display">
         <Swiper

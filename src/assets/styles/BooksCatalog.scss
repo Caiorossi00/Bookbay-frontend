@@ -1,5 +1,3 @@
-//Booklist precisa ter a margin removida e estruturada com flex no componente pai
-
 .container-catalog {
   display: flex;
   flex-direction: column;
@@ -9,4 +7,30 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.4rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 7em;
+  gap: 10px;
+
+  button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #333;
+    }
+
+    &.active {
+      font-weight: bold;
+    }
+  }
 }
