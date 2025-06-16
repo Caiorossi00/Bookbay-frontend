@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../assets/styles/GenrePage.scss";
+import BookItem from "../components/Home/BookItem";
 
 export default function GenrePage() {
   const { genero } = useParams();
   const [books, setBooks] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -16,6 +18,7 @@ export default function GenrePage() {
         );
         if (!response.ok)
           throw new Error("Nenhum livro encontrado para esse gênero");
+
         const data = await response.json();
         setBooks(data);
       } catch (err) {
@@ -34,10 +37,7 @@ export default function GenrePage() {
       {!loading && !error && (
         <div className="book-list">
           {books.map((book) => (
-            <div key={book._id} className="book-card">
-              <img src={book.cover} alt={book.title} />
-              <h3>{book.title}</h3>
-            </div>
+            <BookItem key={book._id} book={book} />
           ))}
         </div>
       )}
