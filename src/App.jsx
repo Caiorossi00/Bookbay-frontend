@@ -13,6 +13,7 @@ import GenrePage from "./pages/GenrePage";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Pedidos from "./components/MyOrders";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<VitrinePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/pedidos" element={<Pedidos />} />
         <Route
           path="/admin"
           element={

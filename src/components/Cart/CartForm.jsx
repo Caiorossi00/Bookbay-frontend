@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useCart } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 import "../../assets/styles/CartForm.scss";
 
 export default function CartForm({ cart }) {
+  const { clearCart } = useCart();
+  const navigate = useNavigate();
+
   const [pedido, setPedido] = useState({
-    nome: "",
-    email: "",
     cep: "",
     rua: "",
     bairro: "",
@@ -16,39 +19,41 @@ export default function CartForm({ cart }) {
   const [loading, setLoading] = useState(false);
 
   const validateNumero = (value) => /^\d*$/.test(value);
-
   const validateCep = (value) => /^[0-9\-]*$/.test(value);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name === "numero" && !validateNumero(value)) return;
     if (name === "cep" && !validateCep(value)) return;
 
     setPedido((prev) => ({ ...prev, [name]: value }));
   };
 
+  const decodeJwt = (token) => {
+    if (!token) return null;
+    const base64Url = token.split(".")[1];
+    if (!base64Url) return null;
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    try {
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+          .join("")
+      );
+      return JSON.parse(jsonPayload);
+    } catch {
+      return null;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { nome, email, cep, rua, bairro, numero, complemento, pagamento } =
-      pedido;
+    const { cep, rua, bairro, numero, complemento, pagamento } = pedido;
 
-    if (
-      !nome.trim() ||
-      !cep.trim() ||
-      !rua.trim() ||
-      !bairro.trim() ||
-      !numero.trim() ||
-      !pagamento ||
-      !email.trim()
-    ) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
-    }
-
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      alert("Email inválido.");
+    if (!cep || !rua || !bairro || !numero || !pagamento) {
+      alert("Preencha todos os campos obrigatórios.");
       return;
     }
 
@@ -57,12 +62,28 @@ export default function CartForm({ cart }) {
       return;
     }
 
+    const token = localStorage.getItem("token");
+    const user = decodeJwt(token);
+
+    if (!user) {
+      alert("Usuário não autenticado.");
+      return;
+    }
+
     const total = cart
       .reduce((acc, item) => acc + Number(item.price), 0)
       .toFixed(2);
 
     const pedidoCompleto = {
-      ...pedido,
+      usuarioId: user.id,
+      nome: user.nome,
+      email: user.email,
+      cep,
+      rua,
+      bairro,
+      numero,
+      complemento,
+      pagamento,
       produtos: cart.map((item) => ({
         title: item.title,
         price: item.price,
@@ -78,16 +99,11 @@ export default function CartForm({ cart }) {
         body: JSON.stringify(pedidoCompleto),
       });
 
-      if (!response.ok) {
-        throw new Error("Erro ao enviar pedido");
-      }
-
-      const data = await response.json();
+      if (!response.ok) throw new Error("Erro ao enviar pedido");
 
       alert("Pedido enviado com sucesso!");
+
       setPedido({
-        nome: "",
-        email: "",
         cep: "",
         rua: "",
         bairro: "",
@@ -95,6 +111,10 @@ export default function CartForm({ cart }) {
         complemento: "",
         pagamento: "",
       });
+
+      clearCart();
+
+      navigate("/pedidos");
     } catch (error) {
       alert(error.message || "Erro ao enviar pedido");
     } finally {
@@ -106,22 +126,6 @@ export default function CartForm({ cart }) {
     <>
       <h2 className="headline-form">Finalizar Compra</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Nome completo"
-          name="nome"
-          value={pedido.nome}
-          onChange={handleChange}
-          type="text"
-          disabled={loading}
-        />
-        <input
-          placeholder="Email"
-          name="email"
-          type="email"
-          value={pedido.email}
-          onChange={handleChange}
-          disabled={loading}
-        />
         <input
           placeholder="CEP"
           name="cep"

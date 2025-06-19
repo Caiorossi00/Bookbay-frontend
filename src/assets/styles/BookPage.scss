@@ -1,16 +1,10 @@
 .container-bookPage {
   display: flex;
-  width: 92%;
-  margin: 0 auto;
   justify-content: center;
-  gap: 30px;
   margin-top: 5vh;
 }
 
 .bookpage-image {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 2em 0em;
   img {
     width: 400px;
     height: 500px;
@@ -70,6 +64,7 @@
   min-height: 200px;
   max-height: 280px;
   overflow-y: scroll;
+  width: 450px;
 
   p {
     color: #333;
