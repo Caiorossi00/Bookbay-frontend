@@ -10,6 +10,9 @@ import Footer from "./components/Footer";
 import BookPage from "./pages/BookPage";
 import CartPage from "./pages/CartPage";
 import GenrePage from "./pages/GenrePage";
+import PrivateRoute from "./components/PrivateRoute";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -17,9 +20,32 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<VitrinePage />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/book/new" element={<NewBook />} />
-        <Route path="/admin/book/:id" element={<BookForm />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/book/new"
+          element={
+            <PrivateRoute>
+              <NewBook />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/book/:id"
+          element={
+            <PrivateRoute>
+              <BookForm />
+            </PrivateRoute>
+          }
+        />
         <Route path="/livro/:id" element={<BookPage />} />
         <Route path="/carrinho" element={<CartPage />} />
         <Route path="/genero/:genero" element={<GenrePage />} />
