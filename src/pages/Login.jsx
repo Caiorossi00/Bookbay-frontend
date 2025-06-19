@@ -7,6 +7,24 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  function decodeJwt(token) {
+    if (!token) return null;
+    const base64Url = token.split(".")[1];
+    if (!base64Url) return null;
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    try {
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+          .join("")
+      );
+      return JSON.parse(jsonPayload);
+    } catch {
+      return null;
+    }
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
@@ -25,6 +43,10 @@ export default function Login() {
 
       const data = await res.json();
       localStorage.setItem("token", data.token);
+
+      const decoded = decodeJwt(data.token);
+      console.log("Usuário logado (token decodificado):", decoded);
+
       navigate("/");
     } catch (err) {
       setError(err.message);

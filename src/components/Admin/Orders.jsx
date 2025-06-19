@@ -32,7 +32,7 @@ export default function Orders() {
     <div className="orders">
       <ul className="order-list">
         {orders.map((order) => (
-          <li key={order._id} style={{ position: "relative" }}>
+          <li key={order._id}>
             <button onClick={() => handleDelete(order._id)}>×</button>
 
             <p>
