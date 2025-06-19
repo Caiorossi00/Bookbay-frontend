@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "../assets/styles/Login.scss";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -35,10 +36,10 @@ export default function Register() {
   }
 
   return (
-    <div>
+    <div className="auth-container">
       <h2>Cadastro</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Nome de usuário:</label>
           <input
             type="text"
@@ -48,7 +49,7 @@ export default function Register() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -58,7 +59,7 @@ export default function Register() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Senha:</label>
           <input
             type="password"
@@ -68,11 +69,17 @@ export default function Register() {
           />
         </div>
 
-        {error && <p>{error}</p>}
-        {success && <p>{success}</p>}
+        {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
 
-        <button type="submit">Registrar</button>
+        <button type="submit" className="submit-btn">
+          Registrar
+        </button>
       </form>
+
+      <p className="bottom-message">
+        Já tem uma conta? <Link to="/login">Faça login</Link>
+      </p>
     </div>
   );
 }

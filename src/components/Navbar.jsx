@@ -1,66 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/BookBay.png";
 import { FaShoppingCart } from "react-icons/fa";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
-import * as jwt_decode from "jwt-decode";
+import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/Navbar.scss";
 
 const Navbar = () => {
   const { cart } = useCart();
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  let role = null;
-  if (token) {
-    try {
-      const decoded = jwt_decode(token);
-      role = decoded.role;
-    } catch {
-      role = null;
-    }
-  }
+  useEffect(() => {
+    const checkToken = () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        console.log("O usuário está logado");
+        setIsLoggedIn(true);
+      } else {
+        console.log("Usuário não está logado");
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkToken();
+    const interval = setInterval(checkToken, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   function handleLogout() {
     localStorage.removeItem("token");
-    navigate("/login");
+    setIsLoggedIn(false);
+    navigate("/");
   }
 
   return (
     <nav>
-      <a href="/">
+      <Link to="/">
         <img src={logo} alt="logo Bookbay" />
-      </a>
+      </Link>
       <ul>
         <li>
-          <a href="/">Início</a>
+          <Link to="/">Início</Link>
         </li>
 
         <div className="nav-right">
           <li>
-            <a href="/carrinho" className="cart-link">
+            <Link to="/carrinho" className="cart-link">
               <FaShoppingCart size={18} color="#333" />
               {cart.length > 0 && (
                 <span className="cart-count">{cart.length}</span>
               )}
-            </a>
+            </Link>
           </li>
 
-          {!token && (
-            <li>
-              <a href="/register">Registrar</a>
-            </li>
-          )}
-
-          {token && role === "admin" && (
-            <li>
-              <a href="/admin">Admin</a>
-            </li>
-          )}
-
-          {token && (
+          {isLoggedIn ? (
             <li>
               <button
                 onClick={handleLogout}
@@ -69,6 +65,12 @@ const Navbar = () => {
               >
                 <FiLogOut size={18} color="#333" />
               </button>
+            </li>
+          ) : (
+            <li>
+              <Link to="/login" className="login-link" title="Entrar">
+                Entrar
+              </Link>
             </li>
           )}
         </div>

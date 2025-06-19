@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "../assets/styles/Login.scss";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -54,10 +55,10 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div className="auth-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -68,7 +69,7 @@ export default function Login() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Senha:</label>
           <input
             type="password"
@@ -78,10 +79,16 @@ export default function Login() {
           />
         </div>
 
-        {error && <div>{error}</div>}
+        {error && <div className="error-message">{error}</div>}
 
-        <button type="submit">Entrar</button>
+        <button type="submit" className="submit-btn">
+          Entrar
+        </button>
       </form>
+
+      <p className="bottom-message">
+        Não tem uma conta? <Link to="/register">Registrar-se</Link>
+      </p>
     </div>
   );
 }
