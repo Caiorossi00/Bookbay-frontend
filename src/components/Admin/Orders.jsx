@@ -32,18 +32,21 @@ export default function Orders() {
     <div className="orders">
       <ul className="order-list">
         {orders.map((order) => (
-          <li key={order._id}>
+          <li key={order._id} className="order-item">
             <button onClick={() => handleDelete(order._id)}>×</button>
-
+            <p>
+              <strong>User ID:</strong> {order.usuarioId}
+            </p>
             <p>
               <strong>Nome:</strong> {order.nome}
             </p>
             <p>
-              <strong>Email:</strong> {order.email}
+              <strong>Contato:</strong> {order.contato}
             </p>
             <p>
               <strong>Endereço:</strong> {order.rua}, {order.bairro}, Nº{" "}
-              {order.numero} {order.complemento && `- ${order.complemento}`}
+              {order.numero}
+              {order.complemento && ` - ${order.complemento}`}
             </p>
             <p>
               <strong>CEP:</strong> {order.cep}
@@ -52,16 +55,21 @@ export default function Orders() {
               <strong>Pagamento:</strong> {order.pagamento}
             </p>
             <p>
-              <strong>Total:</strong> R${order.total}
+              <strong>Total:</strong> R$ {order.total}
             </p>
 
             <div>
-              <strong className="products-header">Livros:</strong>
+              <strong className="products-header">Produtos:</strong>
               <ul className="product-list">
                 {order.produtos.map((produto, index) => (
                   <li key={index} className="product-item">
-                    {produto.title} - R${" "}
-                    {produto.price?.$numberInt || produto.price}
+                    {produto.cover && (
+                      <img src={produto.cover} alt={produto.title} />
+                    )}
+                    {produto.title} - R$
+                    {produto.price?.$numberDecimal ||
+                      produto.price?.$numberInt ||
+                      produto.price}
                   </li>
                 ))}
               </ul>

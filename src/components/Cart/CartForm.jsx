@@ -8,6 +8,8 @@ export default function CartForm({ cart }) {
   const navigate = useNavigate();
 
   const [pedido, setPedido] = useState({
+    nome: "",
+    contato: "",
     cep: "",
     rua: "",
     bairro: "",
@@ -18,13 +20,22 @@ export default function CartForm({ cart }) {
 
   const [loading, setLoading] = useState(false);
 
-  const validateNumero = (value) => /^\d*$/.test(value);
-  const validateCep = (value) => /^[0-9\-]*$/.test(value);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "numero" && !validateNumero(value)) return;
-    if (name === "cep" && !validateCep(value)) return;
+
+    if (name === "numero" && !/^\d*$/.test(value)) return;
+
+    if (name === "cep") {
+      const onlyDigits = value.replace(/\D/g, "").slice(0, 8);
+      setPedido((prev) => ({ ...prev, cep: onlyDigits }));
+      return;
+    }
+
+    if (name === "contato") {
+      const onlyDigits = value.replace(/\D/g, "").slice(0, 15);
+      setPedido((prev) => ({ ...prev, contato: onlyDigits }));
+      return;
+    }
 
     setPedido((prev) => ({ ...prev, [name]: value }));
   };
@@ -50,9 +61,10 @@ export default function CartForm({ cart }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { cep, rua, bairro, numero, complemento, pagamento } = pedido;
+    const { nome, contato, cep, rua, bairro, numero, complemento, pagamento } =
+      pedido;
 
-    if (!cep || !rua || !bairro || !numero || !pagamento) {
+    if (!nome || !contato || !cep || !rua || !bairro || !numero || !pagamento) {
       alert("Preencha todos os campos obrigatórios.");
       return;
     }
@@ -76,18 +88,15 @@ export default function CartForm({ cart }) {
 
     const pedidoCompleto = {
       usuarioId: user.id,
-      nome: user.nome,
-      email: user.email,
+      nome,
+      contato,
       cep,
       rua,
       bairro,
       numero,
       complemento,
       pagamento,
-      produtos: cart.map((item) => ({
-        title: item.title,
-        price: item.price,
-      })),
+      produtos: cart.map((item) => item._id),
       total,
     };
 
@@ -104,6 +113,8 @@ export default function CartForm({ cart }) {
       alert("Pedido enviado com sucesso!");
 
       setPedido({
+        nome: "",
+        contato: "",
         cep: "",
         rua: "",
         bairro: "",
@@ -113,7 +124,6 @@ export default function CartForm({ cart }) {
       });
 
       clearCart();
-
       navigate("/pedidos");
     } catch (error) {
       alert(error.message || "Erro ao enviar pedido");
@@ -127,12 +137,29 @@ export default function CartForm({ cart }) {
       <h2 className="headline-form">Finalizar Compra</h2>
       <form onSubmit={handleSubmit}>
         <input
+          placeholder="Nome completo"
+          name="nome"
+          value={pedido.nome}
+          onChange={handleChange}
+          type="text"
+          disabled={loading}
+        />
+        <input
+          placeholder="Whatsapp (com DDD)"
+          name="contato"
+          value={pedido.contato}
+          onChange={handleChange}
+          type="tel"
+          maxLength={15}
+          disabled={loading}
+        />
+        <input
           placeholder="CEP"
           name="cep"
           value={pedido.cep}
           onChange={handleChange}
           type="tel"
-          maxLength={9}
+          maxLength={8}
           disabled={loading}
         />
         <input
@@ -199,7 +226,7 @@ export default function CartForm({ cart }) {
         </div>
 
         <button type="submit" disabled={loading}>
-          {loading ? "Enviando..." : "Comprar"}
+          {loading ? "Enviando..." : "Confirmar Pedido"}
         </button>
       </form>
     </>

@@ -1,3 +1,13 @@
+.my-orders {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+
+  p {
+    margin: 0 auto;
+  }
+}
+
 .my-orders-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

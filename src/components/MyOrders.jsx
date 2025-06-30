@@ -58,25 +58,31 @@ export default function Pedidos() {
         <p>Você ainda não fez nenhum pedido.</p>
       ) : (
         <ul className="my-orders-list">
-          {pedidos.map((pedido) => {
-            return (
-              <li key={pedido._id} className="order-item">
-                <p>
-                  <strong>Total:</strong> R$ {pedido.total}
-                </p>
-                <p>
-                  <strong>Produtos:</strong>
-                </p>
-                <ul>
-                  {pedido.produtos.map((produto, i) => (
-                    <li key={i}>
-                      {produto.title} - R$ {produto.price}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            );
-          })}
+          {pedidos.map((pedido) => (
+            <li key={pedido._id} className="order-item">
+              <p>
+                <strong>Total:</strong> R$ {pedido.total}
+              </p>
+              <p>
+                <strong>Produtos:</strong>
+              </p>
+              <ul className="produtos-list">
+                {pedido.produtos.map((produto, i) => (
+                  <li key={i} className="produto-item">
+                    {produto.foto && (
+                      <img src={produto.foto} alt={produto.title} />
+                    )}
+                    <div>
+                      <p>
+                        <strong>{produto.title}</strong>
+                      </p>
+                      <p>R$ {produto.price}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
         </ul>
       )}
     </div>
