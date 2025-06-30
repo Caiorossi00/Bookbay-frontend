@@ -34,7 +34,9 @@ export default function Pedidos() {
       return;
     }
 
-    fetch(`http://localhost:5000/orders/pedidos?userId=${user.id}`)
+    fetch(
+      `https://bookbay-backend.onrender.com/orders/pedidos?userId=${user.id}`
+    )
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao buscar pedidos");
         return res.json();

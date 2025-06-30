@@ -14,7 +14,7 @@ export default function GenrePage() {
     async function fetchBooksByGenre() {
       try {
         const response = await fetch(
-          `http://localhost:5000/books/genero/${genero}`
+          `https://bookbay-backend.onrender.com/books/genero/${genero}`
         );
         if (!response.ok)
           throw new Error("Nenhum livro encontrado para esse gênero");

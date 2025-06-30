@@ -6,13 +6,13 @@ export default function Books() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/books")
+    fetch("https://bookbay-backend.onrender.com/books")
       .then((response) => response.json())
       .then((data) => setBooks(data));
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/books/${id}`, {
+    await fetch(`https://bookbay-backend.onrender.com/books/${id}`, {
       method: "DELETE",
     });
     setBooks(books.filter((book) => book._id !== id));

@@ -102,11 +102,14 @@ export default function CartForm({ cart }) {
 
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(pedidoCompleto),
-      });
+      const response = await fetch(
+        "https://bookbay-backend.onrender.com/orders",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(pedidoCompleto),
+        }
+      );
 
       if (!response.ok) throw new Error("Erro ao enviar pedido");
 

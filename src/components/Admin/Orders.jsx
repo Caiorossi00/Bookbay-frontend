@@ -7,7 +7,7 @@ export default function Orders() {
   const handleDelete = async (id) => {
     if (window.confirm("Tem certeza que quer excluir este pedido?")) {
       try {
-        await fetch(`http://localhost:5000/orders/${id}`, {
+        await fetch(`https://bookbay-backend.onrender.com/orders/${id}`, {
           method: "DELETE",
         });
         setOrders(orders.filter((order) => order._id !== id));
@@ -18,7 +18,7 @@ export default function Orders() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://bookbay-backend.onrender.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((error) => console.error("Erro ao carregar pedidos:", error));

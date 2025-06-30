@@ -8,7 +8,7 @@ const Home = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/books")
+    fetch("https://bookbay-backend.onrender.com/books")
       .then((response) => response.json())
       .then((data) => setBooks(data));
   }, []);

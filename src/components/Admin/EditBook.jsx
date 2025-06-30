@@ -17,7 +17,6 @@ const BookForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Busca os dados do livro ao carregar a página, caso haja id
   useEffect(() => {
     if (!id) return;
 
@@ -28,7 +27,6 @@ const BookForm = () => {
         return res.json();
       })
       .then((data) => {
-        // Ajusta o estado para preencher o formulário
         setForm({
           title: data.title || "",
           author: data.author || "",
@@ -63,10 +61,10 @@ const BookForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const method = id ? "PATCH" : "POST"; // PATCH para atualizar parcialmente
+    const method = id ? "PATCH" : "POST";
     const url = id
-      ? `http://localhost:5000/books/${id}`
-      : "http://localhost:5000/books";
+      ? `https://bookbay-backend.onrender.com/books/${id}`
+      : "https://bookbay-backend.onrender.com/books";
 
     try {
       const response = await fetch(url, {
