@@ -9,7 +9,7 @@ const BooksCatalog = ({ books }) => {
   const [showNoResults, setShowNoResults] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 15;
 
   useEffect(() => {
     setShowNoResults(false);

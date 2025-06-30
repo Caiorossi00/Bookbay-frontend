@@ -33,46 +33,45 @@ export default function Orders() {
       <ul className="order-list">
         {orders.map((order) => (
           <li key={order._id} className="order-item">
-            <button onClick={() => handleDelete(order._id)}>×</button>
-            <p>
-              <strong>User ID:</strong> {order.usuarioId}
-            </p>
-            <p>
-              <strong>Nome:</strong> {order.nome}
-            </p>
-            <p>
-              <strong>Contato:</strong> {order.contato}
-            </p>
-            <p>
-              <strong>Endereço:</strong> {order.rua}, {order.bairro}, Nº{" "}
-              {order.numero}
-              {order.complemento && ` - ${order.complemento}`}
-            </p>
-            <p>
-              <strong>CEP:</strong> {order.cep}
-            </p>
-            <p>
-              <strong>Pagamento:</strong> {order.pagamento}
-            </p>
-            <p>
-              <strong>Total:</strong> R$ {order.total}
-            </p>
-
-            <div>
-              <strong className="products-header">Produtos:</strong>
-              <ul className="product-list">
-                {order.produtos.map((produto, index) => (
-                  <li key={index} className="product-item">
-                    {produto.cover && (
-                      <img src={produto.cover} alt={produto.title} />
-                    )}
-                    {produto.title} - R$
-                    {produto.price?.$numberDecimal ||
-                      produto.price?.$numberInt ||
-                      produto.price}
-                  </li>
-                ))}
-              </ul>
+            <div className="order-container">
+              <div className="order-details">
+                <button onClick={() => handleDelete(order._id)}>×</button>
+                <p>
+                  <strong>User ID:</strong> {order.usuarioId}
+                </p>
+                <p>
+                  <strong>Nome:</strong> {order.nome}
+                </p>
+                <p>
+                  <strong>Contato:</strong> {order.contato}
+                </p>
+                <p>
+                  <strong>Endereço:</strong> {order.rua}, {order.bairro}, Nº{" "}
+                  {order.numero}
+                  {order.complemento && ` - ${order.complemento}`}
+                </p>
+                <p>
+                  <strong>CEP:</strong> {order.cep}
+                </p>
+                <p>
+                  <strong>Pagamento:</strong> {order.pagamento}
+                </p>
+                <p>
+                  <strong>Total:</strong> R$ {order.total}
+                </p>
+              </div>
+              <div>
+                <ul className="product-list">
+                  {order.produtos.map((produto, index) => (
+                    <li key={index} className="product-item">
+                      {produto.cover && (
+                        <img src={produto.cover} alt={produto.title} />
+                      )}
+                      {produto.title}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </li>
         ))}
