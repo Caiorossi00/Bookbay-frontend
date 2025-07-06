@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../assets/styles/GenrePage.scss";
 import BookItem from "../components/Home/BookItem";
+import { API_URL } from "../config";
 
 export default function GenrePage() {
   const { genero } = useParams();
@@ -13,9 +14,7 @@ export default function GenrePage() {
   useEffect(() => {
     async function fetchBooksByGenre() {
       try {
-        const response = await fetch(
-          `https://bookbay-backend.onrender.com/books/genero/${genero}`
-        );
+        const response = await fetch(`${API_URL}/books/genero/${genero}`);
         if (!response.ok)
           throw new Error("Nenhum livro encontrado para esse gênero");
 

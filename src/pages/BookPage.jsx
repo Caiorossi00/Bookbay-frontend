@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { API_URL } from "../config";
 import ".././assets/styles/BookPage.scss";
 
 export default function BookPage() {
@@ -14,9 +15,7 @@ export default function BookPage() {
     async function fetchBook() {
       try {
         setLoading(true);
-        const response = await fetch(
-          `https://bookbay-backend.onrender.com/books/${id}`
-        );
+        const response = await fetch(`${API_URL}/books/${id}`);
         if (!response.ok) {
           throw new Error(`Erro: ${response.status} - ${response.statusText}`);
         }

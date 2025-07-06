@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import "../../assets/styles/CartForm.scss";
+import { API_URL } from "../../config";
 
 export default function CartForm({ cart }) {
   const { clearCart } = useCart();
@@ -102,14 +103,11 @@ export default function CartForm({ cart }) {
 
     setLoading(true);
     try {
-      const response = await fetch(
-        "https://bookbay-backend.onrender.com/orders",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(pedidoCompleto),
-        }
-      );
+      const response = await fetch(`${API_URL}/orders`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(pedidoCompleto),
+      });
 
       if (!response.ok) throw new Error("Erro ao enviar pedido");
 

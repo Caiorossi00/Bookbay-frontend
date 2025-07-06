@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/Books.scss";
+import { API_URL } from "../../config";
 
 export default function Books() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("https://bookbay-backend.onrender.com/books")
+    fetch(`${API_URL}/books`)
       .then((response) => response.json())
       .then((data) => setBooks(data));
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch(`https://bookbay-backend.onrender.com/books/${id}`, {
+    await fetch(`${API_URL}/books/${id}`, {
       method: "DELETE",
     });
     setBooks(books.filter((book) => book._id !== id));

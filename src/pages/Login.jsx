@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/styles/Login.scss";
+import { API_URL } from "../config";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -31,14 +32,11 @@ export default function Login() {
     setError("");
 
     try {
-      const res = await fetch(
-        "https://bookbay-backend.onrender.com/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
       if (!res.ok) {
         const data = await res.json();

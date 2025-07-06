@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { API_URL } from "../config";
+import { FiPackage } from "react-icons/fi";
 import "../assets/styles/MyOrders.scss";
 
 function decodeJwt(token) {
@@ -34,9 +36,7 @@ export default function Pedidos() {
       return;
     }
 
-    fetch(
-      `https://bookbay-backend.onrender.com/orders/pedidos?userId=${user.id}`
-    )
+    fetch(`${API_URL}/orders/pedidos?userId=${user.id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao buscar pedidos");
         return res.json();
@@ -51,42 +51,49 @@ export default function Pedidos() {
       });
   }, []);
 
-  if (loading) return <p>Carregando pedidos...</p>;
+  if (loading) return <p className="no-orders">Carregando pedidos...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="my-orders">
-      {pedidos.length === 0 ? (
-        <p>Você ainda não fez nenhum pedido.</p>
-      ) : (
-        <ul className="my-orders-list">
-          {pedidos.map((pedido) => (
-            <li key={pedido._id} className="order-item">
-              <p>
-                <strong>Total:</strong> R$ {pedido.total}
-              </p>
-              <p>
-                <strong>Produtos:</strong>
-              </p>
-              <ul className="produtos-list">
-                {pedido.produtos.map((produto, i) => (
-                  <li key={i} className="produto-item">
+      <h1>Meus Pedidos</h1>
+
+      <div className="container-orders">
+        {pedidos.length === 0 ? (
+          <p className="no-orders">Você ainda não fez nenhum pedido.</p>
+        ) : (
+          pedidos.map((pedido, i) => (
+            <div key={pedido._id} className="order">
+              <div className="order-header">
+                <div className="order-index">#{i + 1}</div>
+                <div className="order-id">
+                  <FiPackage className="order-icon" />
+                  {pedido._id}
+                </div>
+              </div>
+
+              <div className="order-body">
+                {pedido.produtos.map((produto, j) => (
+                  <div key={j} className="product">
                     {produto.foto && (
                       <img src={produto.foto} alt={produto.title} />
                     )}
-                    <div>
-                      <p>
-                        <strong>{produto.title}</strong>
-                      </p>
-                      <p>R$ {produto.price}</p>
+                    <div className="product-info">
+                      <p className="product-title">{produto.title}</p>
+                      <p className="product-author">Resgatar Autor</p>
+                      <p className="product-price">R$ {produto.price}</p>
                     </div>
-                  </li>
+                  </div>
                 ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      )}
+              </div>
+
+              <div className="order-footer">
+                <h3>Total: R$ {pedido.total}</h3>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

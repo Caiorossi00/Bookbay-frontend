@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/styles/Orders.scss";
+import { API_URL } from "../../config";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -7,7 +8,7 @@ export default function Orders() {
   const handleDelete = async (id) => {
     if (window.confirm("Tem certeza que quer excluir este pedido?")) {
       try {
-        await fetch(`https://bookbay-backend.onrender.com/orders/${id}`, {
+        await fetch(`${API_URL}/orders/${id}`, {
           method: "DELETE",
         });
         setOrders(orders.filter((order) => order._id !== id));
@@ -18,7 +19,7 @@ export default function Orders() {
   };
 
   useEffect(() => {
-    fetch("https://bookbay-backend.onrender.com/orders")
+    fetch(`${API_URL}/orders`)
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((error) => console.error("Erro ao carregar pedidos:", error));

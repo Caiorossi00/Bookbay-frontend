@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { API_URL } from "../../config";
 import "../../assets/styles/EditBook.scss";
 
 const BookForm = () => {
@@ -21,7 +22,7 @@ const BookForm = () => {
     if (!id) return;
 
     setLoading(true);
-    fetch(`http://localhost:5000/books/${id}`)
+    fetch(`${API_URL}/books/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao carregar o livro");
         return res.json();
@@ -62,9 +63,7 @@ const BookForm = () => {
     e.preventDefault();
 
     const method = id ? "PATCH" : "POST";
-    const url = id
-      ? `https://bookbay-backend.onrender.com/books/${id}`
-      : "https://bookbay-backend.onrender.com/books";
+    const url = id ? `${API_URL}/books/${id}` : `${API_URL}/books`;
 
     try {
       const response = await fetch(url, {

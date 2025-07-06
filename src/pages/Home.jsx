@@ -3,14 +3,18 @@ import FeaturedBooks from "../components/Home/FeaturedBooks.jsx";
 import BooksCatalog from "../components/Home/BooksCatalog.jsx";
 import GenresBanners from "../components/Home/GenresBanners.jsx";
 import ".././assets/styles/Home.scss";
+import { API_URL } from "../config.js";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("https://bookbay-backend.onrender.com/books")
+    fetch(`${API_URL}/books`)
       .then((response) => response.json())
-      .then((data) => setBooks(data));
+      .then((data) => setBooks(data))
+      .catch((error) => {
+        console.error("Erro ao buscar livros:", error);
+      });
   }, []);
 
   return (

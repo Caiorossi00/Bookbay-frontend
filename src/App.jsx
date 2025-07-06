@@ -14,6 +14,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Pedidos from "./components/MyOrders";
+import TermsOfService from "./pages/TermsOfService";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/pedidos" element={<Pedidos />} />
+        <Route path="/termos-de-serviço" element={<TermsOfService />} />
         <Route
           path="/admin"
           element={

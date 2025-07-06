@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_URL } from "../../config";
 import "../../assets/styles/NewBook.scss";
 
 const NewBook = () => {
@@ -38,7 +39,7 @@ const NewBook = () => {
     const randomId = Math.floor(Math.random() * 1000000);
     const bookWithId = { ...newBook, id: randomId, genres: genresArray };
 
-    const response = await fetch("https://bookbay-backend.onrender.com/books", {
+    const response = await fetch(`${API_URL}/books`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bookWithId),
