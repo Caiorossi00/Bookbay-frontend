@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+
+import ScrollToTop from "./components/ScrollToTop";
 import VitrinePage from "./pages/Home";
 import AdminDashboard from "./pages/AdminDashoard";
 import BookForm from "./components/Admin/EditBook";
@@ -19,6 +21,7 @@ import TermsOfService from "./pages/TermsOfService";
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<VitrinePage />} />
