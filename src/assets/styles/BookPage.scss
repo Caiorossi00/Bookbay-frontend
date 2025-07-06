@@ -80,3 +80,53 @@
     font-style: italic;
   }
 }
+
+@media (max-width: 768px) {
+  .container-bookPage {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3vh;
+  }
+
+  .bookpage-image {
+    img {
+      height: auto;
+      max-height: 300px;
+    }
+  }
+
+  .bookpage-details {
+    margin-top: 1.5vh;
+
+    h1 {
+      font-size: 1.8em;
+      text-align: center;
+    }
+
+    h3,
+    .bookpage-price {
+      font-size: 1.2em;
+      text-align: center;
+    }
+
+    .bookpage-price {
+      margin-top: 3px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 1em;
+      font-size: 0.9em;
+      margin-top: 15pxs;
+    }
+  }
+
+  .bookpage-description {
+    margin-top: 3vh;
+
+    h5 {
+      margin-bottom: 8px;
+    }
+  }
+}
