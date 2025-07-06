@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-left">
           <div className="footer-logo">
-            <img src="/logo.svg" alt="Logo Bookbayy" className="logo-image" />
+            <h1 className="logo-footer">Bookbay</h1>
           </div>
           <div className="footer-address">
             <div>Jaguarão, RS - 96300-000</div>
