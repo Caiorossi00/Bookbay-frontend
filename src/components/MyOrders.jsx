@@ -3,24 +3,6 @@ import { API_URL } from "../config";
 import { FiPackage } from "react-icons/fi";
 import "../assets/styles/MyOrders.scss";
 
-function decodeJwt(token) {
-  if (!token) return null;
-  const base64Url = token.split(".")[1];
-  if (!base64Url) return null;
-  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  try {
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-        .join("")
-    );
-    return JSON.parse(jsonPayload);
-  } catch {
-    return null;
-  }
-}
-
 export default function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,15 +10,19 @@ export default function Pedidos() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const user = decodeJwt(token);
 
-    if (!user) {
+    if (!token) {
       setError("Usuário não autenticado");
       setLoading(false);
       return;
     }
 
-    fetch(`${API_URL}/orders/pedidos?userId=${user.id}`)
+    fetch(`${API_URL}/orders/pedidos`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao buscar pedidos");
         return res.json();
@@ -57,7 +43,6 @@ export default function Pedidos() {
   return (
     <div className="my-orders">
       <h1>Meus Pedidos</h1>
-
       <div className="container-orders">
         {pedidos.length === 0 ? (
           <p className="no-orders">Você ainda não fez nenhum pedido.</p>
@@ -75,8 +60,8 @@ export default function Pedidos() {
               <div className="order-body">
                 {pedido.produtos.map((produto, j) => (
                   <div key={j} className="product">
-                    {produto.foto && (
-                      <img src={produto.foto} alt={produto.title} />
+                    {produto.cover && (
+                      <img src={produto.cover} alt={produto.title} />
                     )}
                     <div className="product-info">
                       <p className="product-title">{produto.title}</p>

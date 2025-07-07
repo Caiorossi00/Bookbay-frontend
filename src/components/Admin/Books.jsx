@@ -9,14 +9,38 @@ export default function Books() {
   useEffect(() => {
     fetch(`${API_URL}/books`)
       .then((response) => response.json())
-      .then((data) => setBooks(data));
+      .then((data) => setBooks(data))
+      .catch((err) => console.error("Erro ao buscar livros:", err));
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch(`${API_URL}/books/${id}`, {
-      method: "DELETE",
-    });
-    setBooks(books.filter((book) => book._id !== id));
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Você precisa estar logado para excluir um livro.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/books/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(
+          `Erro ao excluir livro: ${errorData.error || response.statusText}`
+        );
+        return;
+      }
+
+      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
+    } catch (error) {
+      alert("Erro na conexão. Tente novamente mais tarde.");
+      console.error(error);
+    }
   };
 
   return (

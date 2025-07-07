@@ -62,18 +62,30 @@ const BookForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Você precisa estar logado para realizar essa ação.");
+      return;
+    }
+
     const method = id ? "PATCH" : "POST";
     const url = id ? `${API_URL}/books/${id}` : `${API_URL}/books`;
 
     try {
       const response = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(form),
       });
+
       if (!response.ok) {
-        throw new Error("Erro ao salvar o livro");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Erro ao salvar o livro");
       }
+
       navigate("/admin");
     } catch (err) {
       alert(err.message);

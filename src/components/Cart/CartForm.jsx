@@ -105,7 +105,10 @@ export default function CartForm({ cart }) {
     try {
       const response = await fetch(`${API_URL}/orders`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(pedidoCompleto),
       });
 

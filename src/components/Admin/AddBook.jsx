@@ -41,7 +41,10 @@ const NewBook = () => {
 
     const response = await fetch(`${API_URL}/books`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify(bookWithId),
     });
 
