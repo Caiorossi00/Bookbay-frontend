@@ -7,9 +7,10 @@ const BooksCatalog = ({ books }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("Todos");
   const [showNoResults, setShowNoResults] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setShowNoResults(false);
@@ -19,7 +20,15 @@ const BooksCatalog = ({ books }) => {
     return () => clearTimeout(timer);
   }, [searchTerm, selectedGenre]);
 
-  const filteredBooks = books.filter((book) => {
+  useEffect(() => {
+    if (books && books.length >= 0) {
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+  }, [books]);
+
+  const filteredBooks = (books || []).filter((book) => {
     const lowerSearch = searchTerm.toLowerCase();
     const matchesSearch =
       book.title.toLowerCase().includes(lowerSearch) ||
@@ -64,12 +73,14 @@ const BooksCatalog = ({ books }) => {
 
       <div className="container-catalog">
         <div className="book-list-display">
-          {currentBooks.length > 0 ? (
+          {loading ? (
+            <p className="loading-placeholder">Carregando livros...</p>
+          ) : currentBooks.length > 0 ? (
             currentBooks.map((book) => <BookItem key={book.id} book={book} />)
           ) : showNoResults ? (
             <p className="no-results">Nenhum livro encontrado.</p>
           ) : (
-            <p className="no-results">Carregando...</p>
+            <p className="loading-placeholder">Carregando livros...</p>
           )}
         </div>
 

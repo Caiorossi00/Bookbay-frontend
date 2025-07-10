@@ -4,11 +4,18 @@ import "../../assets/styles/FeaturedBooks.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-
 import "swiper/css/pagination";
 
 const FeaturedBooks = ({ books }) => {
+  if (!books || books.length === 0) {
+    return <p className="loading-placeholder">Carregando livros...</p>;
+  }
+
   const featuredBooks = books.filter((book) => book.isDestaque);
+
+  if (featuredBooks.length === 0) {
+    return <p className="no-results">Nenhum livro destacado encontrado.</p>;
+  }
 
   return (
     <div className="-featured-book-list">
