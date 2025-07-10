@@ -9,7 +9,7 @@ export default function LoginPromptModal({ isOpen, onClose }) {
     if (isOpen) {
       const timer = setTimeout(() => {
         navigate("/login");
-      }, 333000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [isOpen, navigate]);
