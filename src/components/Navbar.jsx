@@ -45,16 +45,14 @@ const Navbar = () => {
         </div>
 
         <div className="nav-right">
-          {isLoggedIn && (
-            <li>
-              <Link to="/carrinho" className="cart-link">
-                <FaShoppingCart size={18} color="#333" />
-                {cart.length > 0 && (
-                  <span className="cart-count">{cart.length}</span>
-                )}
-              </Link>
-            </li>
-          )}
+          <li>
+            <Link to="/carrinho" className="cart-link">
+              <FaShoppingCart size={18} color="#333" />
+              {cart.length > 0 && (
+                <span className="cart-count">{cart.length}</span>
+              )}
+            </Link>
+          </li>
 
           {isLoggedIn ? (
             <li>
