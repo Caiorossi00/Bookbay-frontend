@@ -132,3 +132,23 @@ table {
   gap: 1em;
   padding: 1.5em;
 }
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.spinner-icon {
+  font-size: 2em;
+  color: #333;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
