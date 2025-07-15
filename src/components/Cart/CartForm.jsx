@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "../../assets/styles/CartForm.scss";
 import { API_URL } from "../../config";
 
@@ -66,12 +67,12 @@ export default function CartForm({ cart }) {
       pedido;
 
     if (!nome || !contato || !cep || !rua || !bairro || !numero || !pagamento) {
-      alert("Preencha todos os campos obrigatórios.");
+      toast.warn("Preencha todos os campos obrigatórios.");
       return;
     }
 
     if (cart.length === 0) {
-      alert("O carrinho está vazio.");
+      toast.warn("O carrinho está vazio.");
       return;
     }
 
@@ -79,7 +80,7 @@ export default function CartForm({ cart }) {
     const user = decodeJwt(token);
 
     if (!user) {
-      alert("Usuário não autenticado.");
+      toast.error("Usuário não autenticado.");
       return;
     }
 
@@ -114,7 +115,7 @@ export default function CartForm({ cart }) {
 
       if (!response.ok) throw new Error("Erro ao enviar pedido");
 
-      alert("Pedido enviado com sucesso!");
+      toast.success("Pedido enviado com sucesso!");
 
       setPedido({
         nome: "",
@@ -130,7 +131,7 @@ export default function CartForm({ cart }) {
       clearCart();
       navigate("/pedidos");
     } catch (error) {
-      alert(error.message || "Erro ao enviar pedido");
+      toast.error(error.message || "Erro ao enviar pedido");
     } finally {
       setLoading(false);
     }

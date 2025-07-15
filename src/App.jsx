@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+import "./App.css";
 import ScrollToTop from "./components/ScrollToTop";
 import VitrinePage from "./pages/Home";
 import AdminDashboard from "./pages/AdminDashoard";
@@ -61,6 +63,16 @@ function App() {
         <Route path="/genero/:genero" element={<GenrePage />} />
       </Routes>
       <Footer />
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
+      />
     </Router>
   );
 }

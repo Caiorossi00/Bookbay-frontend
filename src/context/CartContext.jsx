@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
@@ -15,7 +16,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (book) => {
     if (cart.some((item) => item.id === book.id)) {
-      alert("Este livro já está no carrinho!");
+      toast.warn("Este livro já está no carrinho!");
       return;
     }
 
@@ -29,11 +30,12 @@ export const CartProvider = ({ children }) => {
       return newCart;
     });
 
-    alert("Adicionado ao carrinho!");
+    toast.success("Adicionado ao carrinho!");
   };
 
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
+    toast.info("Item removido do carrinho.");
   };
 
   const clearCart = () => {

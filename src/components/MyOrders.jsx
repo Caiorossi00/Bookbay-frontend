@@ -58,18 +58,20 @@ export default function Pedidos() {
               </div>
 
               <div className="order-body">
-                {pedido.produtos.map((produto, j) => (
-                  <div key={j} className="product">
-                    {produto.cover && (
-                      <img src={produto.cover} alt={produto.title} />
-                    )}
-                    <div className="product-info">
-                      <p className="product-title">{produto.title}</p>
-                      <p className="product-author">Resgatar Autor</p>
-                      <p className="product-price">R$ {produto.price}</p>
+                {pedido.produtos.map((produto, j) => {
+                  return (
+                    <div key={j} className="product">
+                      {produto.cover && (
+                        <img src={produto.cover} alt={produto.title} />
+                      )}
+                      <div className="product-info">
+                        <p className="product-title">{produto.title}</p>
+                        <p className="product-author">{produto.author}</p>
+                        <p className="product-price">R$ {produto.price}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               <div className="order-footer">
