@@ -1,13 +1,30 @@
 .genre-container {
   min-height: 55vh;
+  margin: 0 5%;
+
+  .genrepage-title {
+    font-size: 1.4em;
+    border-bottom: 1px solid #ccc;
+    width: fit-content;
+    font-style: italic;
+    margin-bottom: 15px;
+    margin-top: 5vh;
+  }
+
+  .genrepage-message {
+    width: 70%;
+    font-size: 1.3em;
+    font-style: italic;
+    margin-bottom: 3vh;
+  }
 
   .book-list {
     display: flex;
     gap: 1rem;
-    width: 93%;
     margin: 0 auto;
-    margin-top: 5vh;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 
     img {
       width: 120px;

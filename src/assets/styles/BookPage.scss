@@ -13,10 +13,13 @@
 }
 
 .bookpage-details {
-  width: 500px;
+  min-width: 450px;
+  max-width: 800px;
   margin-top: 2vh;
   display: flex;
   flex-direction: column;
+  margin-right: 3%;
+  margin-left: 3%;
 
   h1 {
     font-size: 2.3em;
@@ -48,6 +51,7 @@
     width: fit-content;
     font-family: inherit;
     align-self: flex-end;
+    font-size: 1.1em;
 
     &:hover {
       background-color: #333;
@@ -64,15 +68,15 @@
   min-height: 200px;
   max-height: 280px;
   overflow-y: scroll;
-  width: 450px;
 
   p {
     color: #333;
     letter-spacing: -0.4px;
+    font-size: 1.2em;
   }
 
   h5 {
-    font-size: 1em;
+    font-size: 1.1em;
     margin-bottom: 10px;
     color: grey;
     font-family: "inter", sans-serif;
@@ -115,15 +119,18 @@
     }
 
     button {
-      width: 100%;
+      width: 90%;
       padding: 1em;
       font-size: 0.9em;
-      margin-top: 15pxs;
+      margin: 0 auto;
+      margin-top: 15px;
     }
   }
 
   .bookpage-description {
     margin-top: 3vh;
+    margin-left: 3%;
+    margin-right: 3%;
 
     h5 {
       margin-bottom: 8px;

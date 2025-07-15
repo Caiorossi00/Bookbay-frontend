@@ -29,16 +29,37 @@ export default function GenrePage() {
     fetchBooksByGenre();
   }, [genero]);
 
+  const capitalizeFirstLetter = (str) =>
+    str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+  const getMessageByGenre = (genre) => {
+    switch (genre.toLowerCase()) {
+      case "terror":
+        return "Feeling spooky? Aqui estão as melhores histórias de terror que você pode encontrar.";
+      case "hqs":
+        return "A seleção de melhores histórias dos quadrinhos e graphic novels.";
+      case "programação":
+        return "Princípios e práticas que todo programador deveria conhecer.";
+
+      default:
+        return "Esses são os livros do nosso catálogo selecionados para você.";
+    }
+  };
+
   return (
     <div className="genre-container">
       {loading && <p className="loading no-orders">Carregando...</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !error && (
-        <div className="book-list">
-          {books.map((book) => (
-            <BookItem key={book._id} book={book} />
-          ))}
-        </div>
+        <>
+          <h1 className="genrepage-title">{capitalizeFirstLetter(genero)}</h1>
+          <p className="genrepage-message">{getMessageByGenre(genero)}</p>
+          <div className="book-list">
+            {books.map((book) => (
+              <BookItem key={book._id} book={book} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
