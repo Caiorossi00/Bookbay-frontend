@@ -12,7 +12,7 @@
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 5em;
+  margin-top: 3em;
   gap: 10px;
 
   button {
@@ -31,6 +31,28 @@
 
     &.active {
       font-weight: bold;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container-catalog {
+    align-items: center;
+  }
+
+  .book-list-display {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .pagination {
+    margin-top: 3em;
+    gap: 6px;
+
+    button {
+      padding: 0.4rem 0.7em;
+      font-size: 1em;
+      font-family: inherit;
     }
   }
 }

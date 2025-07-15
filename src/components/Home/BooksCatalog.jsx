@@ -75,12 +75,8 @@ const BooksCatalog = ({ books }) => {
         <div className="book-list-display">
           {loading ? (
             <p className="loading-placeholder">Carregando livros...</p>
-          ) : currentBooks.length > 0 ? (
-            currentBooks.map((book) => <BookItem key={book.id} book={book} />)
-          ) : showNoResults ? (
-            <p className="no-results">Nenhum livro encontrado.</p>
           ) : (
-            <p className="loading-placeholder">Carregando livros...</p>
+            currentBooks.map((book) => <BookItem key={book.id} book={book} />)
           )}
         </div>
 

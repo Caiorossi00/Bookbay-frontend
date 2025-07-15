@@ -56,3 +56,19 @@
 .genres-banner-wrapper:hover .genres-banner-text {
   opacity: 1;
 }
+
+@media (max-width: 768px) {
+  .container-genres-banners h1 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+
+  .genres-banner-text {
+    font-size: 1.2rem;
+  }
+
+  .genres-banner-wrapper {
+    min-width: 180px;
+    max-height: 300px;
+  }
+}

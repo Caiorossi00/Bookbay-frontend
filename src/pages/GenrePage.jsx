@@ -31,7 +31,7 @@ export default function GenrePage() {
 
   return (
     <div className="genre-container">
-      {loading && <p className="loading">Carregando...</p>}
+      {loading && <p className="loading no-orders">Carregando...</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !error && (
         <div className="book-list">
