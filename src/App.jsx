@@ -20,6 +20,7 @@ import Register from "./pages/Register";
 import Pedidos from "./components/MyOrders";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import SellWithUs from "./pages/SellWithUs";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/termos-de-serviço" element={<TermsOfService />} />
         <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+        <Route path="/seja-parceiro" element={<SellWithUs />} />
 
         <Route
           path="/admin"

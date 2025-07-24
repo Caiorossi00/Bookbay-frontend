@@ -93,6 +93,9 @@ const Footer = () => {
                   Política de Privacidade
                 </Link>
               </li>
+              <li>
+                <Link to="/seja-parceiro">Quer vender conosco?</Link>
+              </li>
             </ul>
           </div>
         </div>
