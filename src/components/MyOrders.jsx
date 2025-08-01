@@ -67,7 +67,12 @@ export default function Pedidos() {
                       <div className="product-info">
                         <p className="product-title">{produto.title}</p>
                         <p className="product-author">{produto.author}</p>
-                        <p className="product-price">R$ {produto.price}</p>
+                        <p className="product-price">
+                          {Number(produto.price).toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </p>
                       </div>
                     </div>
                   );
@@ -75,7 +80,15 @@ export default function Pedidos() {
               </div>
 
               <div className="order-footer">
-                <h3>Total: R$ {pedido.total}</h3>
+                <h3>
+                  Total:{" "}
+                  {Number(pedido.total)
+                    .toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })
+                    .replace(",", ".")}
+                </h3>
               </div>
             </div>
           ))

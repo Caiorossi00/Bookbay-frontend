@@ -100,7 +100,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.2em;
 
   h2 {
     font-size: 1.5em;
@@ -117,7 +117,7 @@
     border-radius: 4px;
     width: 60%;
     align-self: flex-end;
-    margin-top: 20px;
+    margin-top: 15px;
     cursor: pointer;
   }
 
@@ -125,7 +125,6 @@
     font-family: "inter", sans-serif;
     font-weight: lighter;
     letter-spacing: -1px;
-    font-size: 1.2em;
   }
 }
 
@@ -135,6 +134,29 @@
   align-items: center;
   justify-content: center;
   height: 65vh;
+}
+
+.order-summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .subtotal,
+  .frete {
+    color: rgb(37, 37, 37);
+    font-size: 1.1em;
+  }
+
+  .cart-total {
+    text-align: end;
+    font-size: 1.4em;
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 768px) {

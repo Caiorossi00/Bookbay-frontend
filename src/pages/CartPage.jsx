@@ -6,13 +6,15 @@ import LoginPromptModal from "../components/Cart/LoginPromptModal";
 import { useNavigate } from "react-router-dom";
 
 export default function CartPage() {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, getCartTotals } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const navigate = useNavigate();
 
   if (cart.length === 0)
     return <p className="empty-cart">O seu carrinho ainda está vazio.</p>;
+
+  const { subtotal, shippingFee, total } = getCartTotals();
 
   const handleCheckoutClick = () => {
     const token = localStorage.getItem("token");
@@ -60,12 +62,20 @@ export default function CartPage() {
         <div className="order-summary">
           <h2>Resumo do Pedido</h2>
           <div className="order-summary-details">
-            <p>
-              Total: R${" "}
-              {cart
-                .reduce((acc, item) => acc + Number(item.price), 0)
-                .toFixed(2)}
-            </p>
+            {subtotal < 149 ? (
+              <>
+                <div>
+                  <p className="subtotal">Subtotal: R$ {subtotal.toFixed(2)}</p>
+                  {shippingFee > 0 && (
+                    <p className="frete">Frete: R$ {shippingFee.toFixed(2)}</p>
+                  )}
+                </div>
+
+                <p className="cart-total">Total: R$ {total.toFixed(2)}</p>
+              </>
+            ) : (
+              <p className="cart-total"> Total: R$ {total.toFixed(2)}</p>
+            )}
           </div>
           <button className="checkout-button" onClick={handleCheckoutClick}>
             Finalizar Compra
