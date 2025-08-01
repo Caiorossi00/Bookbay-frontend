@@ -9,7 +9,7 @@ const BooksCatalog = ({ books }) => {
   const [selectedGenre, setSelectedGenre] = useState("Todos");
   const [loading, setLoading] = useState(true);
 
-  const itemsPerPage = 15;
+  const itemsPerPage = 30;
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
