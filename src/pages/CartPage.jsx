@@ -15,6 +15,8 @@ export default function CartPage() {
     return <p className="empty-cart">O seu carrinho ainda está vazio.</p>;
 
   const { subtotal, shippingFee, total } = getCartTotals();
+  const freteGratisMin = 150;
+  const faltaParaFreteGratis = freteGratisMin - subtotal;
 
   const handleCheckoutClick = () => {
     const token = localStorage.getItem("token");
@@ -62,20 +64,21 @@ export default function CartPage() {
         <div className="order-summary">
           <h2>Resumo do Pedido</h2>
           <div className="order-summary-details">
-            {subtotal < 149 ? (
-              <>
-                <div>
-                  <p className="subtotal">Subtotal: R$ {subtotal.toFixed(2)}</p>
-                  {shippingFee > 0 && (
-                    <p className="frete">Frete: R$ {shippingFee.toFixed(2)}</p>
-                  )}
-                </div>
+            <div>
+              <p className="subtotal">Subtotal: R$ {subtotal.toFixed(2)}</p>
+              {shippingFee > 0 && (
+                <p className="frete">Frete: R$ {shippingFee.toFixed(2)}</p>
+              )}
+            </div>
 
-                <p className="cart-total">Total: R$ {total.toFixed(2)}</p>
-              </>
-            ) : (
-              <p className="cart-total"> Total: R$ {total.toFixed(2)}</p>
+            {subtotal < freteGratisMin && (
+              <p className="frete-gratis-msg">
+                Adicione mais R$ {faltaParaFreteGratis.toFixed(2)} para ganhar
+                frete grátis!
+              </p>
             )}
+
+            <p className="cart-total">Total: R$ {total.toFixed(2)}</p>
           </div>
           <button className="checkout-button" onClick={handleCheckoutClick}>
             Finalizar Compra
