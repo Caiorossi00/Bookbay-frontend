@@ -231,4 +231,15 @@
       }
     }
   }
+
+  .order-summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+
+    .frete-gratis-msg {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
 }
