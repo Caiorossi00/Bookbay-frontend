@@ -65,7 +65,9 @@ export default function CartPage() {
           <h2>Resumo do Pedido</h2>
           <div className="order-summary-details">
             <div>
-              <p className="subtotal">Subtotal: R$ {subtotal.toFixed(2)}</p>
+              {subtotal < freteGratisMin && (
+                <p className="subtotal">Subtotal: R$ {subtotal.toFixed(2)}</p>
+              )}
               {shippingFee > 0 && (
                 <p className="frete">Frete: R$ {shippingFee.toFixed(2)}</p>
               )}
@@ -80,6 +82,7 @@ export default function CartPage() {
 
             <p className="cart-total">Total: R$ {total.toFixed(2)}</p>
           </div>
+
           <button className="checkout-button" onClick={handleCheckoutClick}>
             Finalizar Compra
           </button>

@@ -187,9 +187,10 @@
       border-radius: 6px;
 
       button {
-        width: 50%;
+        width: 35%;
         margin: 0 auto;
         margin-top: 10px;
+        border-radius: 4px;
       }
     }
 
@@ -233,13 +234,13 @@
   }
 
   .order-summary-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
-
     .frete-gratis-msg {
       width: 100%;
       margin-bottom: 10px;
+    }
+
+    .cart-total {
+      margin-top: -5px;
     }
   }
 }
