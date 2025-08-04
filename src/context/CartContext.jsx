@@ -19,7 +19,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (book) => {
     if (cart.some((item) => item.id === book.id)) {
-      toast.warn("This book is already in the cart!");
+      toast.warn("Esse livro já está no carrinho!");
       return;
     }
 
@@ -27,18 +27,18 @@ export const CartProvider = ({ children }) => {
     setCart((prev) => {
       const newCart = [...prev, { ...book, price: priceNumber }];
       console.log(
-        "Items in cart after addition:",
+        "Items in cart:",
         newCart.map((item) => item.title)
       );
       return newCart;
     });
 
-    toast.success("Added to cart!");
+    toast.success("Adicionado ao carrinho!");
   };
 
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
-    toast.info("Item removed from cart.");
+    toast.info("Livro removido do carrinho!");
   };
 
   const clearCart = () => {
