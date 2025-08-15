@@ -62,12 +62,16 @@
     margin-bottom: 10px;
   }
 
+  .genres-images {
+    gap: 0.5rem;
+  }
+
   .genres-banner-text {
     font-size: 1.2rem;
   }
 
   .genres-banner-wrapper {
     min-width: 180px;
-    max-height: 300px;
+    max-height: 280px;
   }
 }

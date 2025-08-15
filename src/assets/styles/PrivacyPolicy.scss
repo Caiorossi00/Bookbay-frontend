@@ -66,3 +66,15 @@
     }
   }
 }
+
+@media (max-width: 780px) {
+  .privacy-page {
+    .privacy-container {
+      padding: 2rem 8%;
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
