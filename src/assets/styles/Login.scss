@@ -73,3 +73,24 @@
   text-align: center;
   margin: 10px 0;
 }
+
+@media (max-width: 768px) {
+  .auth-container {
+    width: 70%;
+    padding: 5em 1em;
+    height: auto;
+    margin-top: 5vh;
+
+    button {
+      border-radius: 2px;
+      width: 80%;
+      margin: 0 auto;
+      padding: 0.8em;
+      margin-top: 20px;
+    }
+  }
+
+  .form-group input {
+    width: 80%;
+  }
+}
