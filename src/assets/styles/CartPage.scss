@@ -37,7 +37,7 @@
   display: flex;
   border-bottom: 1px solid rgba(230, 230, 230, 0.815);
   padding-bottom: 1em;
-  gap: 1em;
+  gap: 1;
   width: 88%;
 
   img {
@@ -187,9 +187,9 @@
       border-radius: 6px;
 
       button {
-        width: 35%;
+        width: 70%;
         margin: 0 auto;
-        margin-top: 10px;
+        margin-top: 20px;
         border-radius: 4px;
       }
     }
@@ -202,15 +202,23 @@
 
   .cart-item {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    text-align: center;
 
     img {
-      width: 80px;
-      height: 112px;
+      width: 100px;
+      height: auto;
     }
 
     .cart-item-info {
       letter-spacing: 0;
       margin-left: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
 
       h2 {
         font-size: 1.1em;
@@ -228,19 +236,16 @@
       }
 
       button {
-        padding: 0.4em 0.8em;
+        padding: 0.4em 2em;
+        border-radius: 0;
       }
     }
   }
 
   .order-summary-details {
     .frete-gratis-msg {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-
-    .cart-total {
-      margin-top: -5px;
+      width: 90%;
+      margin: 10px auto;
     }
   }
 }
