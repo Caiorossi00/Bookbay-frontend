@@ -118,7 +118,6 @@ export default function Orders() {
                         {produto.cover && (
                           <img src={produto.cover} alt={produto.title} />
                         )}
-                        {produto.title}
                       </li>
                     ))}
                 </ul>
