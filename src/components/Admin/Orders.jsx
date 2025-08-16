@@ -60,7 +60,7 @@ export default function Orders() {
       })
       .then((data) => {
         if (Array.isArray(data)) {
-          setOrders(data);
+          setOrders([...data].reverse());
         } else {
           throw new Error("Formato inválido dos dados recebidos.");
         }
