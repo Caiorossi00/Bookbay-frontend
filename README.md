@@ -31,4 +31,4 @@ O frontend consome a API do backend da **BookBay**, responsável por:
 - Gerenciamento de livros, usuários e pedidos
 - Integração com o banco de dados **MongoDB**
 
-Repositório do backend: [BookBay Backend]((https://github.com/Caiorossi00/Bookbay-backend))
+Repositório do backend: [BookBay Backend](https://github.com/Caiorossi00/Bookbay-backend)
