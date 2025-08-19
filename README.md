@@ -1,12 +1,34 @@
-# React + Vite
+# BookBay — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BookBay é uma plataforma de e-commerce para venda de livros usados, desenvolvida como um projeto fullstack para consolidar conhecimentos de frontend, backend e banco de dados.  
+Esta é a parte **frontend** da aplicação.
 
-Currently, two official plugins are available:
+## Tecnologias utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** — Criação da interface e gerenciamento de componentes
+- **React Router DOM** — Controle de rotas, incluindo rotas protegidas
+- **Context API** — Gerenciamento global de estado, especialmente para o carrinho
+- **Sass (SCSS)** — Estilização modular e organizada
+- **Axios** — Consumo da API backend
+- **Vite** — Build tool para um ambiente de desenvolvimento mais rápido
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ✅ Catálogo de livros com filtros dinâmicos  
+- ✅ Carrossel de destaques  
+- ✅ Sistema de carrinho utilizando Context API  
+- ✅ Rotas protegidas para gerenciamento de pedidos  
+- ✅ Página de detalhes do livro  
+- ✅ Sistema de busca otimizado  
+- ✅ Integração com a API do backend para cadastro e pedidos  
+- ✅ Responsividade e acessibilidade  
+
+## Integração com o backend
+
+O frontend consome a API do backend da **BookBay**, responsável por:
+
+- Autenticação e autorização via JWT
+- Gerenciamento de livros, usuários e pedidos
+- Integração com o banco de dados **MongoDB**
+
+Repositório do backend: [BookBay Backend]((https://github.com/Caiorossi00/Bookbay-backend))
