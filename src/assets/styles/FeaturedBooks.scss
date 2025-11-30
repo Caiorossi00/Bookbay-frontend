@@ -14,7 +14,7 @@
   flex-wrap: wrap;
 
   .swiper-slide {
-    width: 200px;
+    width: 175px;
     display: flex;
   }
 
@@ -45,6 +45,18 @@
   .featured-book-list-display {
     display: flex;
     flex-wrap: wrap;
-    height: 45vh;
+  }
+  .featured-book-list-display .swiper-slide {
+    width: 45%;
+    margin-bottom: -10px;
+  }
+
+  .swiper {
+    height: fit-content;
+  }
+
+  .swiper-slide {
+    height: fit-content;
+    margin-bottom: 0;
   }
 }

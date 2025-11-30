@@ -5,13 +5,13 @@
   text-align: center;
 
   h1 {
-    margin-bottom: 1.5em;
-    font-size: 1.4rem;
+    margin-bottom: 1.2em;
+    font-size: 1.25rem;
     font-style: italic;
     border-bottom: 1px solid #ccc;
     width: fit-content;
     margin-left: 5%;
-    margin-top: 3vh;
+    margin-top: 2.5vh;
   }
 }
 
@@ -19,48 +19,48 @@
   display: flex;
   flex-direction: column;
   margin: 0 5%;
-  gap: 2em;
+  gap: 1.5em;
 
   .order {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     border: 1px solid #ccc;
-    padding: 2em 0;
+    padding: 1.5em 0;
 
     .order-header {
       display: flex;
       justify-content: space-between;
       margin: 0 5%;
-      text-align: right;
       font-family: "inter", sans-serif;
       letter-spacing: -1.2px;
       font-weight: lighter;
       font-style: italic;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
 
       .order-index {
-        font-style: italic;
         margin-top: -2px;
         font-weight: 200;
+        font-size: 0.9em;
       }
 
       .order-id {
+        font-size: 0.9em;
         display: flex;
-        gap: 5px;
+        gap: 4px;
       }
     }
 
     .order-body {
       display: flex;
       flex-direction: column;
-      gap: 1em;
+      gap: 0.8em;
 
       .product {
         display: flex;
-        gap: 1em;
+        gap: 0.8em;
         margin: 0 4%;
-        border-radius: 8px;
+        border-radius: 6px;
         border: 1px solid #ccc;
       }
 
@@ -71,51 +71,48 @@
         text-align: left;
 
         .product-title {
-          font-size: 1.6em;
+          font-size: 1.3em;
           font-style: italic;
           font-weight: lighter;
         }
 
         .product-author {
-          font-size: 1.15em;
+          font-size: 1em;
           font-family: "inter", sans-serif;
-          letter-spacing: -1.2px;
+          letter-spacing: -1.1px;
           font-weight: lighter;
           font-style: italic;
           color: #333;
         }
 
         .product-price {
-          font-size: 1.3em;
-          margin-top: 10px;
+          font-size: 1.15em;
+          margin-top: 6px;
           font-family: "inter", sans-serif;
-          letter-spacing: -1.2px;
+          letter-spacing: -1.1px;
           font-weight: lighter;
         }
       }
     }
 
     img {
-      width: 120px;
-      height: 180px;
+      width: 100px;
+      height: 150px;
       object-fit: cover;
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      border-radius: 6px 0 0 6px;
     }
 
     .order-footer {
       display: flex;
       margin: 0 5%;
-      margin-top: 2vh;
+      margin-top: 1.5vh;
 
       h3 {
         width: 100%;
         text-align: right;
-        font-size: 1.4em;
+        font-size: 1.2em;
         font-family: "inter", sans-serif;
-        letter-spacing: -1.2px;
+        letter-spacing: -1.1px;
         font-weight: lighter;
         font-style: italic;
       }
@@ -127,32 +124,32 @@
   .container-orders {
     .order {
       img {
-        width: 110px;
-        height: 160px;
+        width: 90px;
+        height: 130px;
       }
 
       .order-body {
         .product {
-          gap: 1.5em;
+          gap: 1em;
         }
 
         .product-info {
           .product-title {
-            font-size: 1.2em;
+            font-size: 1.05em;
           }
 
           .product-author {
-            font-size: 1em;
+            font-size: 0.9em;
           }
 
           .product-price {
-            font-size: 1.1em;
+            font-size: 1em;
           }
         }
       }
 
       .order-footer h3 {
-        font-size: 1.2em;
+        font-size: 1.05em;
       }
     }
   }

@@ -3,33 +3,33 @@
   flex-direction: column;
   font-family: "inter";
   letter-spacing: -1px;
-  gap: 10px;
+  gap: 8px;
   border: 1px solid rgb(216, 216, 216);
-  padding: 0.9em;
+  padding: 0.75em;
   border-radius: 4px;
 
   img {
-    min-width: 150px;
-    max-width: 150px;
-    min-height: 220px;
-    max-height: 220px;
+    min-width: 135px;
+    max-width: 135px;
+    min-height: 200px;
+    max-height: 200px;
     object-fit: cover;
   }
 
   h1 {
     font-weight: 300;
-    font-size: 14px;
-    width: 150px;
+    font-size: 13px;
+    width: 135px;
   }
 
   p {
     font-weight: 100;
-    font-size: smaller;
+    font-size: 12px;
   }
 
   .book-price {
     font-weight: 200;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .price-and-cart {
@@ -44,42 +44,43 @@
     width: fit-content;
     height: fit-content;
     background-color: black;
-    padding: 5px 10px;
-    margin-right: 10px;
+    padding: 4px 9px;
+    margin-right: 8px;
     margin-top: 2px;
     cursor: pointer;
     border-radius: 2px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .book-container {
-    padding: 0.7em;
-    gap: 8px;
+    padding: 0.65em;
+    gap: 7px;
 
     img {
-      min-width: 110px;
-      max-width: 110px;
-      min-height: 160px;
-      max-height: 160px;
+      min-width: 100px;
+      max-width: 100px;
+      min-height: 145px;
+      max-height: 145px;
     }
 
     h1 {
-      font-size: 12px;
-      width: 110px;
+      font-size: 11px;
+      width: 100px;
     }
 
     p {
-      font-size: 11px;
+      font-size: 10px;
     }
 
     .book-price {
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .price-and-cart button {
-      padding: 4px 8px;
-      font-size: 12px;
+      padding: 4px 7px;
+      font-size: 11px;
     }
   }
 }

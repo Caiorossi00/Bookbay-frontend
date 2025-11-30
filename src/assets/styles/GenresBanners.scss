@@ -16,16 +16,16 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 
 .genres-banner-wrapper {
   position: relative;
-  flex: 1 1 30%;
-  min-width: 250px;
+  flex: 1 1 1;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   cursor: pointer;
-  max-height: 400px;
+  max-height: 300px;
 }
 
 .genres-banner {
@@ -71,7 +71,7 @@
   }
 
   .genres-banner-wrapper {
-    min-width: 180px;
-    max-height: 280px;
+    min-width: 88vw;
+    max-height: 200px;
   }
 }
