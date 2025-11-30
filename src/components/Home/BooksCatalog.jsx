@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { FiLoader } from "react-icons/fi";
 import BookItem from "./BookItem";
 import SearchBook from "./SearchBook";
@@ -9,48 +9,51 @@ const BooksCatalog = ({ books }) => {
   const [selectedGenre, setSelectedGenre] = useState("Todos");
   const [loading, setLoading] = useState(true);
 
-  const itemsPerPage = 30;
+  const itemsPerPage = 60;
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (!books || books.length === 0) {
       setLoading(true);
     } else {
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 500);
+      const timer = setTimeout(() => setLoading(false), 300);
       return () => clearTimeout(timer);
     }
   }, [books]);
 
-  const filteredBooks = (books || []).filter((book) => {
+  const filteredBooks = useMemo(() => {
+    if (!books) return [];
+
     const lowerSearch = searchTerm.toLowerCase();
-    const matchesSearch =
-      book.title.toLowerCase().includes(lowerSearch) ||
-      book.author.toLowerCase().includes(lowerSearch);
-    const matchesGenre =
-      selectedGenre === "Todos" ||
-      (Array.isArray(book.genres) &&
-        book.genres.some(
-          (g) => g.toLowerCase() === selectedGenre.toLowerCase()
-        ));
-    return matchesSearch && matchesGenre;
-  });
+
+    return books.filter((book) => {
+      const matchesSearch =
+        book.title.toLowerCase().includes(lowerSearch) ||
+        book.author.toLowerCase().includes(lowerSearch);
+
+      const matchesGenre =
+        selectedGenre === "Todos" ||
+        (Array.isArray(book.genres) &&
+          book.genres.some(
+            (g) => g.toLowerCase() === selectedGenre.toLowerCase()
+          ));
+
+      return matchesSearch && matchesGenre;
+    });
+  }, [books, searchTerm, selectedGenre]);
 
   const totalPages = Math.ceil(filteredBooks.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentBooks = filteredBooks.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
 
-  const goToPage = (page) => {
-    setCurrentPage(page);
-  };
+  const currentBooks = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return filteredBooks.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredBooks, currentPage]);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, selectedGenre]);
+
+  const goToPage = (page) => setCurrentPage(page);
 
   return (
     <div className="book-list">
@@ -94,4 +97,4 @@ const BooksCatalog = ({ books }) => {
   );
 };
 
-export default BooksCatalog;
+export default React.memo(BooksCatalog);

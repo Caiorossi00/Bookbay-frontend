@@ -1,15 +1,6 @@
-import React from "react";
 import "../assets/styles/SearchGenres.scss";
 
-const genres = [
-  "Todos",
-  "Romance",
-  "Filosofia",
-  "Política",
-  "Ficção",
-  "Clássico",
-  "Curiosidades",
-];
+const genres = ["Todos", "Terror"];
 
 const SearchGenres = ({ selectedGenre, onGenreChange }) => {
   return (

@@ -6,7 +6,8 @@
 .book-list-display {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.4rem;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .pagination {

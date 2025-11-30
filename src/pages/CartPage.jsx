@@ -15,7 +15,7 @@ export default function CartPage() {
     return <p className="empty-cart">O seu carrinho ainda está vazio.</p>;
 
   const { subtotal, shippingFee, total } = getCartTotals();
-  const freteGratisMin = 150;
+  const freteGratisMin = 50;
   const faltaParaFreteGratis = freteGratisMin - subtotal;
 
   const handleCheckoutClick = () => {

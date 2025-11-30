@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
-const SHIPPING_FEE = 30;
-const SHIPPING_THRESHOLD = 149;
+const SHIPPING_FEE = 7;
+const SHIPPING_THRESHOLD = 40;
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
