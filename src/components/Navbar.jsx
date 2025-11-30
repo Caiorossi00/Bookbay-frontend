@@ -11,6 +11,7 @@ const Navbar = () => {
   const { cart } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
+  const currentPath = location.pathname;
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -30,12 +31,16 @@ const Navbar = () => {
       <Link to="/">
         <img src={logo} alt="logo Bookbay" />
       </Link>
+
       <ul>
         <div className="nav-left">
-          <li>
-            <Link to="/">Início</Link>
-          </li>
-          {isLoggedIn && (
+          {currentPath !== "/" && (
+            <li>
+              <Link to="/">Início</Link>
+            </li>
+          )}
+
+          {isLoggedIn && currentPath !== "/pedidos" && (
             <li>
               <Link to="/pedidos" className="orders-link" title="Meus Pedidos">
                 Meus Pedidos
@@ -45,16 +50,26 @@ const Navbar = () => {
         </div>
 
         <div className="nav-right">
-          <li>
-            <Link to="/carrinho" className="cart-link">
-              <FaShoppingCart size={18} color="#333" />
-              {cart.length > 0 && (
-                <span className="cart-count">{cart.length}</span>
-              )}
-            </Link>
-          </li>
+          {currentPath !== "/carrinho" && (
+            <li>
+              <Link to="/carrinho" className="cart-link">
+                <FaShoppingCart size={18} color="#333" />
+                {cart.length > 0 && (
+                  <span className="cart-count">{cart.length}</span>
+                )}
+              </Link>
+            </li>
+          )}
 
-          {isLoggedIn ? (
+          {!isLoggedIn && currentPath !== "/login" && (
+            <li>
+              <Link to="/login" className="login-link" title="Entrar">
+                Entrar
+              </Link>
+            </li>
+          )}
+
+          {isLoggedIn && currentPath !== "/login" && (
             <li>
               <button
                 onClick={handleLogout}
@@ -63,12 +78,6 @@ const Navbar = () => {
               >
                 <FiLogOut size={18} color="#333" />
               </button>
-            </li>
-          ) : (
-            <li>
-              <Link to="/login" className="login-link" title="Entrar">
-                Entrar
-              </Link>
             </li>
           )}
         </div>
